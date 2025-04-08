@@ -1,10 +1,31 @@
 {
+	"main": {
+		"progress_category": "game",
+		"mw_version": "Wii/1.0",
+		"cflags": "main",
+		"objects": {
+			"App.cpp": "MISSING",
+			"BandOffline.cpp": "MISSING",
+			"BudgetScreen.cpp": "MISSING",
+			"ChecksumData_wii.cpp": "MISSING",
+			"Main.cpp": "Matching",
+			"keygen_wii.cpp": "MISSING"
+		}
+	},
+	"system": {
+		"progress_category": "engine",
+		"mw_version": "Wii/1.0",
+		"cflags": "system",
+		"objects": {
+			"system/rndobj/SIVideo.cpp": "NonMatching"
+		}
+	},
 	"sdk/RVL_SDK": {
 		"progress_category": "sdk",
-		"mw_version": "Wii/1.3",
+		"mw_version": "GC/3.0a5",
 		"cflags": "sdk/RVL_SDK",
 		"objects": {
-			"sdk/RVL_SDK/src/ai/ai.c": "MISSING",
+			"sdk/RVL_SDK/src/ai/ai.c": "NonMatching",
 			"sdk/RVL_SDK/src/arc/arc.c": "MISSING",
 			"sdk/RVL_SDK/src/ax/AX.c": "MISSING",
 			"sdk/RVL_SDK/src/ax/AXAlloc.c": "MISSING",
@@ -92,12 +113,13 @@
 			"sdk/RVL_SDK/src/wpad/WPADMem.c": "MISSING",
 			"sdk/RVL_SDK/src/wpad/WUD.c": "MISSING",
 			"sdk/RVL_SDK/src/wpad/WUDHidHost.c": "MISSING",
-			"sdk/RVL_SDK/src/wpad/debug_msg.c": "MISSING"
+			"sdk/RVL_SDK/src/wpad/debug_msg.c": "MISSING",
+			"sdk/RVL_SDK/src/wpad/debug_msg2.c": "MISSING"
 		}
 	},
 	"system/zlib": {
 		"progress_category": "lib",
-		"mw_version": "Wii/1.3",
+		"mw_version": "Wii/1.0",
 		"cflags": "system/zlib",
 		"objects": {
 			"system/zlib/adler32.c": "MISSING",

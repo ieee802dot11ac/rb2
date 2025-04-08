@@ -5,9 +5,7 @@
     Code range: 0x804FDD78 -> 0x804FDD84
 */
 // Range: 0x804FDD78 -> 0x804FDD84
-void * Symbol::Symbol() {
-    // References
-    // -> const char * gNullStr;
-}
-
-
+class Symbol {
+    // total size: 0x4
+    const char *mStr; // offset 0x0, size 0x4
+};

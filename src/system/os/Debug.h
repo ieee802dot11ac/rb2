@@ -5,9 +5,6 @@
     Code range: 0x80046B60 -> 0x80046B6C
 */
 // Range: 0x80046B60 -> 0x80046B6C
-void DebugNotifier::__ls() {
-    // References
-    // -> class Debug TheDebug;
-}
+class Debug {};
 
-
+extern Debug TheDebug;

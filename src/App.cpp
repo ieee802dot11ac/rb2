@@ -4,15 +4,15 @@
     Language: C++
     Code range: 0x8000C280 -> 0x8000DC14
 */
-class Symbol {
-    // total size: 0x4
-    const char * mStr; // offset 0x0, size 0x4
-};
+#include "utl/Symbol.h"
 class Symbol name; // size: 0x4, address: 0x80A48E64
-void (* gRealCallback)(unsigned char &, char *, unsigned char); // size: 0x4, address: 0x80A48E68
-static class DataNode & kill_notifies; // size: 0x4, address: 0x80A48E70
+void (*gRealCallback)(unsigned char &, char *, unsigned char); // size: 0x4, address:
+                                                               // 0x80A48E68
+static class DataNode &kill_notifies; // size: 0x4, address: 0x80A48E70
 // Range: 0x8000C280 -> 0x8000C334
-static void DebugModal(unsigned char & fail /* r29 */, char * msg /* r30 */, unsigned char wait /* r31 */) {
+static void DebugModal(
+    unsigned char &fail /* r29 */, char *msg /* r30 */, unsigned char wait /* r31 */
+) {
     // References
     // -> void (* gRealCallback)(unsigned char &, char *, unsigned char);
     // -> static class DataNode & kill_notifies;
@@ -21,8 +21,8 @@ static void DebugModal(unsigned char & fail /* r29 */, char * msg /* r30 */, uns
 class ObjDirPtr : public ObjRef {
     // total size: 0xC
 protected:
-    class ObjectDir * mDir; // offset 0x4, size 0x4
-    class DirLoader * mLoader; // offset 0x8, size 0x4
+    class ObjectDir *mDir; // offset 0x4, size 0x4
+    class DirLoader *mLoader; // offset 0x8, size 0x4
 };
 static class ObjDirPtr gCommonBank; // size: 0xC, address: 0x80976ACC
 static class ObjDirPtr gCommonTrack; // size: 0xC, address: 0x80976AE4
@@ -54,30 +54,30 @@ struct OSContext {
 };
 struct OSThreadQueue {
     // total size: 0x8
-    struct OSThread * head; // offset 0x0, size 0x4
-    struct OSThread * tail; // offset 0x4, size 0x4
+    struct OSThread *head; // offset 0x0, size 0x4
+    struct OSThread *tail; // offset 0x4, size 0x4
 };
 struct OSThreadLink {
     // total size: 0x8
-    struct OSThread * next; // offset 0x0, size 0x4
-    struct OSThread * prev; // offset 0x4, size 0x4
+    struct OSThread *next; // offset 0x0, size 0x4
+    struct OSThread *prev; // offset 0x4, size 0x4
 };
 struct OSMutexLink {
     // total size: 0x8
-    struct OSMutex * next; // offset 0x0, size 0x4
-    struct OSMutex * prev; // offset 0x4, size 0x4
+    struct OSMutex *next; // offset 0x0, size 0x4
+    struct OSMutex *prev; // offset 0x4, size 0x4
 };
 struct OSMutex {
     // total size: 0x18
     struct OSThreadQueue queue; // offset 0x0, size 0x8
-    struct OSThread * thread; // offset 0x8, size 0x4
+    struct OSThread *thread; // offset 0x8, size 0x4
     long count; // offset 0xC, size 0x4
     struct OSMutexLink link; // offset 0x10, size 0x8
 };
 struct OSMutexQueue {
     // total size: 0x8
-    struct OSMutex * head; // offset 0x0, size 0x4
-    struct OSMutex * tail; // offset 0x4, size 0x4
+    struct OSMutex *head; // offset 0x0, size 0x4
+    struct OSMutex *tail; // offset 0x4, size 0x4
 };
 struct OSThread {
     // total size: 0x318
@@ -87,17 +87,17 @@ struct OSThread {
     long suspend; // offset 0x2CC, size 0x4
     long priority; // offset 0x2D0, size 0x4
     long base; // offset 0x2D4, size 0x4
-    void * val; // offset 0x2D8, size 0x4
-    struct OSThreadQueue * queue; // offset 0x2DC, size 0x4
+    void *val; // offset 0x2D8, size 0x4
+    struct OSThreadQueue *queue; // offset 0x2DC, size 0x4
     struct OSThreadLink link; // offset 0x2E0, size 0x8
     struct OSThreadQueue queueJoin; // offset 0x2E8, size 0x8
-    struct OSMutex * mutex; // offset 0x2F0, size 0x4
+    struct OSMutex *mutex; // offset 0x2F0, size 0x4
     struct OSMutexQueue queueMutex; // offset 0x2F4, size 0x8
     struct OSThreadLink linkActive; // offset 0x2FC, size 0x8
-    unsigned char * stackBase; // offset 0x304, size 0x4
-    unsigned long * stackEnd; // offset 0x308, size 0x4
+    unsigned char *stackBase; // offset 0x304, size 0x4
+    unsigned long *stackEnd; // offset 0x308, size 0x4
     long error; // offset 0x30C, size 0x4
-    void * specific[2]; // offset 0x310, size 0x8
+    void *specific[2]; // offset 0x310, size 0x8
 };
 class SplashWii {
     // total size: 0x1800
@@ -105,7 +105,7 @@ class SplashWii {
     class Timer mAnimationTimer; // offset 0x38, size 0x38
     float mPreviousFrameTimeMs; // offset 0x70, size 0x4
     int mCurrentAnimFrame; // offset 0x74, size 0x4
-    void * mImageData; // offset 0x78, size 0x4
+    void *mImageData; // offset 0x78, size 0x4
     struct _GXTexObj mTexture; // offset 0x7C, size 0x20
     struct _GXTexObj mDiscErrorTexture; // offset 0x9C, size 0x20
     struct _GXTexObj mDiscRetryTexture; // offset 0xBC, size 0x20
@@ -116,14 +116,14 @@ class SplashWii {
     unsigned char mDiscErrorThreadActive; // offset 0x4DF, size 0x1
     unsigned char mDiscErrorThreadStack[4096]; // offset 0x4E0, size 0x1000
     struct OSThread mDiscErrorThread; // offset 0x14E0, size 0x318
-    struct OSThread * mMainThread; // offset 0x17F8, size 0x4
+    struct OSThread *mMainThread; // offset 0x17F8, size 0x4
 };
 class Splash {
     // total size: 0x1360
     float mMinSplashTime; // offset 0x0, size 0x4
     class Timer mTimer; // offset 0x8, size 0x38
-    class RndDir * mLastSplash; // offset 0x40, size 0x4
-    struct OSThread * mMainThread; // offset 0x44, size 0x4
+    class RndDir *mLastSplash; // offset 0x40, size 0x4
+    struct OSThread *mMainThread; // offset 0x44, size 0x4
     struct OSThread mSplashThread; // offset 0x48, size 0x318
     unsigned char mSplashThreadStack[4096]; // offset 0x360, size 0x1000
 };
@@ -146,8 +146,8 @@ enum State {
 class ObjPtr : public ObjRef {
     // total size: 0xC
 protected:
-    class Object * mOwner; // offset 0x4, size 0x4
-    class UIComponent * mPtr; // offset 0x8, size 0x4
+    class Object *mOwner; // offset 0x4, size 0x4
+    class UIComponent *mPtr; // offset 0x8, size 0x4
 };
 class UIComponent : public RndDrawable, public RndTransformable, public RndPollable {
     // total size: 0x170
@@ -155,10 +155,10 @@ protected:
     enum State mState; // offset 0x100, size 0x4
     class ObjPtr mNavRight; // offset 0x104, size 0xC
     class ObjPtr mNavDown; // offset 0x110, size 0xC
-    class User * mSelectingUser; // offset 0x11C, size 0x4
-    class UIScreen * mSelectScreen; // offset 0x120, size 0x4
+    class User *mSelectingUser; // offset 0x11C, size 0x4
+    class UIScreen *mSelectScreen; // offset 0x120, size 0x4
     int mSelected; // offset 0x124, size 0x4
-    class UIResource * mResource; // offset 0x128, size 0x4
+    class UIResource *mResource; // offset 0x128, size 0x4
 private:
     unsigned char mLoading; // offset 0x12C, size 0x1
     unsigned char mMockSelect; // offset 0x12D, size 0x1
@@ -201,13 +201,13 @@ class StlNodeAlloc {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    class RndDir * * _M_data; // offset 0x0, size 0x4
+    class RndDir **_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    class RndDir * * _M_start; // offset 0x0, size 0x4
-    class RndDir * * _M_finish; // offset 0x4, size 0x4
+    class RndDir **_M_start; // offset 0x0, size 0x4
+    class RndDir **_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -219,13 +219,13 @@ class StlNodeAlloc {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    class FilePath * _M_data; // offset 0x0, size 0x4
+    class FilePath *_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    class FilePath * _M_start; // offset 0x0, size 0x4
-    class FilePath * _M_finish; // offset 0x4, size 0x4
+    class FilePath *_M_start; // offset 0x0, size 0x4
+    class FilePath *_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -294,7 +294,7 @@ enum RequestFocus {
 };
 class PanelDir : public RndDir {
     // total size: 0x290
-    class UIComponent * mFocusComponent; // offset 0x1F4, size 0x4
+    class UIComponent *mFocusComponent; // offset 0x1F4, size 0x4
     class ObjPtr mCam; // offset 0x1F8, size 0xC
     class list mTriggers; // offset 0x204, size 0x8
     class list mComponents; // offset 0x20C, size 0x8
@@ -313,11 +313,11 @@ enum State {
 class UIPanel : public virtual Object {
     // total size: 0x5C
 public:
-    void * __vptr$; // offset 0x4, size 0x4
+    void *__vptr$; // offset 0x4, size 0x4
 protected:
     unsigned char mHomeMenuAllowed; // offset 0x8, size 0x1
-    class PanelDir * mDir; // offset 0xC, size 0x4
-    class DirLoader * mLoader; // offset 0x10, size 0x4
+    class PanelDir *mDir; // offset 0xC, size 0x4
+    class DirLoader *mLoader; // offset 0x10, size 0x4
     class String mFocusName; // offset 0x14, size 0xC
 private:
     unsigned char mSharedDir; // offset 0x20, size 0x1
@@ -345,21 +345,22 @@ class UIScreen : public Object {
     // total size: 0x3C
 protected:
     class list mPanelList; // offset 0x28, size 0x8
-    class UIPanel * mFocusPanel; // offset 0x30, size 0x4
-    class DataArray * mBack; // offset 0x34, size 0x4
+    class UIPanel *mFocusPanel; // offset 0x30, size 0x4
+    class DataArray *mBack; // offset 0x34, size 0x4
     unsigned char mClearVram; // offset 0x38, size 0x1
     unsigned char mShowing; // offset 0x39, size 0x1
 };
 class ObjDirItr {
     // total size: 0x14
-    class ObjectDir * mDir; // offset 0x0, size 0x4
-    class ObjectDir * mSubDir; // offset 0x4, size 0x4
-    struct Entry * mEntry; // offset 0x8, size 0x4
-    class UIScreen * mObj; // offset 0xC, size 0x4
+    class ObjectDir *mDir; // offset 0x0, size 0x4
+    class ObjectDir *mSubDir; // offset 0x4, size 0x4
+    struct Entry *mEntry; // offset 0x8, size 0x4
+    class UIScreen *mObj; // offset 0xC, size 0x4
     int mWhich; // offset 0x10, size 0x4
 };
 // Range: 0x8000C334 -> 0x8000D238
-void * App::App(class App * const this /* r29 */, int argc /* r26 */, char * * argv /* r25 */) {
+void *
+App::App(class App *const this /* r29 */, int argc /* r26 */, char **argv /* r25 */) {
     // Local variables
     class SplashWii splasherWii; // r1+0x1440
     unsigned char fast; // r0
@@ -435,7 +436,7 @@ struct PointTest {
     int x; // offset 0x0, size 0x4
     int y; // offset 0x4, size 0x4
     unsigned int z; // offset 0x8, size 0x4
-    class RndFlare * flare; // offset 0xC, size 0x4
+    class RndFlare *flare; // offset 0xC, size 0x4
 };
 class _List_base {
     // total size: 0x8
@@ -456,7 +457,7 @@ public:
 class PostProcessor {
     // total size: 0x4
 public:
-    void * __vptr$; // offset 0x0, size 0x4
+    void *__vptr$; // offset 0x0, size 0x4
 };
 class StlNodeAlloc {
     // total size: 0x1
@@ -498,22 +499,22 @@ protected:
     int mScreenBpp; // offset 0x48, size 0x4
     int mDrawCount; // offset 0x4C, size 0x4
     class Timer mDrawTimer; // offset 0x50, size 0x38
-    class RndOverlay * mTimersOverlay; // offset 0x88, size 0x4
-    class RndOverlay * mRateOverlay; // offset 0x8C, size 0x4
-    class RndOverlay * mHeapOverlay; // offset 0x90, size 0x4
-    class RndOverlay * mStatsOverlay; // offset 0x94, size 0x4
-    class RndConsole * mConsole; // offset 0x98, size 0x4
-    class ParamEdit * mParamEdit; // offset 0x9C, size 0x4
-    class RndMat * mDefaultMat; // offset 0xA0, size 0x4
-    class RndMat * mOverlayMat; // offset 0xA4, size 0x4
-    class RndCam * mDefaultCam; // offset 0xA8, size 0x4
-    class RndEnviron * mDefaultEnv; // offset 0xAC, size 0x4
-    class RndLight * mDefaultLit; // offset 0xB0, size 0x4
+    class RndOverlay *mTimersOverlay; // offset 0x88, size 0x4
+    class RndOverlay *mRateOverlay; // offset 0x8C, size 0x4
+    class RndOverlay *mHeapOverlay; // offset 0x90, size 0x4
+    class RndOverlay *mStatsOverlay; // offset 0x94, size 0x4
+    class RndConsole *mConsole; // offset 0x98, size 0x4
+    class ParamEdit *mParamEdit; // offset 0x9C, size 0x4
+    class RndMat *mDefaultMat; // offset 0xA0, size 0x4
+    class RndMat *mOverlayMat; // offset 0xA4, size 0x4
+    class RndCam *mDefaultCam; // offset 0xA8, size 0x4
+    class RndEnviron *mDefaultEnv; // offset 0xAC, size 0x4
+    class RndLight *mDefaultLit; // offset 0xB0, size 0x4
     float mRateTotal; // offset 0xB4, size 0x4
     int mRate; // offset 0xB8, size 0x4
     int mRateCount; // offset 0xBC, size 0x4
-    const char * mRateGate; // offset 0xC0, size 0x4
-    class DataArray * mFont; // offset 0xC4, size 0x4
+    const char *mRateGate; // offset 0xC0, size 0x4
+    class DataArray *mFont; // offset 0xC4, size 0x4
     int mSync; // offset 0xC8, size 0x4
     unsigned char mGSTiming; // offset 0xCC, size 0x1
     unsigned char mSafeArea; // offset 0xCD, size 0x1
@@ -546,7 +547,7 @@ class Distribution {
 };
 class BudgetScreen : public UIScreen {
     // total size: 0xD4
-    class UIPanel * mTestPanel; // offset 0x3C, size 0x4
+    class UIPanel *mTestPanel; // offset 0x3C, size 0x4
     float mNullCpu; // offset 0x40, size 0x4
     float mNullGs; // offset 0x44, size 0x4
     float mTime; // offset 0x48, size 0x4
@@ -554,13 +555,13 @@ class BudgetScreen : public UIScreen {
     float mFrameInc; // offset 0x50, size 0x4
     float mLastCpu; // offset 0x54, size 0x4
     float mLastGpu; // offset 0x58, size 0x4
-    class TextFileStream * mLog; // offset 0x5C, size 0x4
+    class TextFileStream *mLog; // offset 0x5C, size 0x4
     class Distribution mPollDist; // offset 0x60, size 0x20
     class Distribution mCpuDist; // offset 0x80, size 0x20
     class Distribution mGsDist; // offset 0xA0, size 0x20
     int mRecordStartTick; // offset 0xC0, size 0x4
     int mRecordEndTick; // offset 0xC4, size 0x4
-    const class DataArray * mTests; // offset 0xC8, size 0x4
+    const class DataArray *mTests; // offset 0xC8, size 0x4
     int mTestIdx; // offset 0xCC, size 0x4
     unsigned char mWorstOnly; // offset 0xD0, size 0x1
 };
@@ -578,13 +579,13 @@ class StlNodeAlloc {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    struct LevelData * _M_data; // offset 0x0, size 0x4
+    struct LevelData *_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    struct LevelData * _M_start; // offset 0x0, size 0x4
-    struct LevelData * _M_finish; // offset 0x4, size 0x4
+    struct LevelData *_M_start; // offset 0x0, size 0x4
+    struct LevelData *_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -593,7 +594,7 @@ class vector : protected _Vector_base {
 class ByteGrinder {
     // total size: 0x4
 public:
-    void * __vptr$; // offset 0x0, size 0x4
+    void *__vptr$; // offset 0x0, size 0x4
 };
 class StlNodeAlloc {
     // total size: 0x1
@@ -601,13 +602,13 @@ class StlNodeAlloc {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    class Mic * * _M_data; // offset 0x0, size 0x4
+    class Mic **_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    class Mic * * _M_start; // offset 0x0, size 0x4
-    class Mic * * _M_finish; // offset 0x4, size 0x4
+    class Mic **_M_start; // offset 0x0, size 0x4
+    class Mic **_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -642,19 +643,19 @@ public:
 };
 struct Node {
     // total size: 0xC
-    class Fader * object; // offset 0x0, size 0x4
-    struct Node * next; // offset 0x4, size 0x4
-    struct Node * prev; // offset 0x8, size 0x4
+    class Fader *object; // offset 0x0, size 0x4
+    struct Node *next; // offset 0x4, size 0x4
+    struct Node *prev; // offset 0x8, size 0x4
 };
 class iterator {
     // total size: 0x4
-    struct Node * mNode; // offset 0x0, size 0x4
+    struct Node *mNode; // offset 0x0, size 0x4
 };
 class ObjPtrList : public ObjRef {
     // total size: 0x14
     int mSize; // offset 0x4, size 0x4
-    struct Node * mNodes; // offset 0x8, size 0x4
-    class Object * mOwner; // offset 0xC, size 0x4
+    struct Node *mNodes; // offset 0x8, size 0x4
+    class Object *mOwner; // offset 0xC, size 0x4
     enum ObjListMode mMode; // offset 0x10, size 0x4
 };
 class FaderGroup {
@@ -692,7 +693,7 @@ class set {
 class Fader : public Object {
     // total size: 0x4C
     float mVal; // offset 0x28, size 0x4
-    struct FaderTask * mFaderTask; // offset 0x2C, size 0x4
+    struct FaderTask *mFaderTask; // offset 0x2C, size 0x4
     class Symbol mLocalName; // offset 0x30, size 0x4
     class set mClients; // offset 0x34, size 0x18
 };
@@ -726,15 +727,15 @@ protected:
 private:
     class ByteGrinder mGrinder; // offset 0x38, size 0x4
     int mNumMics; // offset 0x3C, size 0x4
-    class MidiSynth * mMidiSynth; // offset 0x40, size 0x4
+    class MidiSynth *mMidiSynth; // offset 0x40, size 0x4
     class vector mNullMics; // offset 0x44, size 0xC
     unsigned char mMuted; // offset 0x50, size 0x1
     class list mBanks; // offset 0x54, size 0x8
-    class Fader * mMasterFader; // offset 0x5C, size 0x4
-    class Fader * mSfxFader; // offset 0x60, size 0x4
-    class Stream * mDebugStream; // offset 0x64, size 0x4
-    class RndOverlay * mHud; // offset 0x68, size 0x4
-    void (* mWavCacher)(char *); // offset 0x6C, size 0x4
+    class Fader *mMasterFader; // offset 0x5C, size 0x4
+    class Fader *mSfxFader; // offset 0x60, size 0x4
+    class Stream *mDebugStream; // offset 0x64, size 0x4
+    class RndOverlay *mHud; // offset 0x68, size 0x4
+    void (*mWavCacher)(char *); // offset 0x6C, size 0x4
 };
 enum Type {
     kInt = 0,
@@ -744,15 +745,15 @@ enum Type {
 };
 class FormatString {
     // total size: 0x814
-    char * mBuf; // offset 0x0, size 0x4
+    char *mBuf; // offset 0x0, size 0x4
     int mBufSize; // offset 0x4, size 0x4
     char mFmtBuf[2048]; // offset 0x8, size 0x800
-    char * mFmt; // offset 0x808, size 0x4
-    char * mFmtEnd; // offset 0x80C, size 0x4
+    char *mFmt; // offset 0x808, size 0x4
+    char *mFmtEnd; // offset 0x80C, size 0x4
     enum Type mType; // offset 0x810, size 0x4
 };
 // Range: 0x8000D238 -> 0x8000D2D0
-void * App::~App(class App * const this /* r30 */) {
+void *App::~App(class App *const this /* r30 */) {
     // References
     // -> class Debug TheDebug;
     // -> class BandUI * TheBandUI;
@@ -793,17 +794,17 @@ void App::Draw() {}
 // Range: 0x8000D3C0 -> 0x8000D3C4
 void App::Run() {}
 
-static class Timer * _t; // size: 0x4, address: 0x80A48E74
-static class Timer * _t; // size: 0x4, address: 0x80A48E7C
-static class Timer * _t; // size: 0x4, address: 0x80A48E84
-static class DataNode & kill_notifies; // size: 0x4, address: 0x80A48E8C
-static class Object * cd; // size: 0x4, address: 0x80A48E90
+static class Timer *_t; // size: 0x4, address: 0x80A48E74
+static class Timer *_t; // size: 0x4, address: 0x80A48E7C
+static class Timer *_t; // size: 0x4, address: 0x80A48E84
+static class DataNode &kill_notifies; // size: 0x4, address: 0x80A48E8C
+static class Object *cd; // size: 0x4, address: 0x80A48E90
 class Message {
     // total size: 0x8
 public:
-    void * __vptr$; // offset 0x0, size 0x4
+    void *__vptr$; // offset 0x0, size 0x4
 protected:
-    class DataArray * mData; // offset 0x4, size 0x4
+    class DataArray *mData; // offset 0x4, size 0x4
 };
 static class Message show; // size: 0x8, address: 0x80976B18
 class Timer {
@@ -850,7 +851,7 @@ class list : public _List_base {
 };
 class AutoTimer {
     // total size: 0x4
-    class Timer * mTimer; // offset 0x0, size 0x4
+    class Timer *mTimer; // offset 0x0, size 0x4
 };
 enum TransitionState {
     kTransitionNone = 0,
@@ -859,7 +860,7 @@ enum TransitionState {
     kTransitionPop = 3,
 };
 // Range: 0x8000D3C4 -> 0x8000DB6C
-void App::RunWithoutDebugging(class App * const this /* r30 */) {
+void App::RunWithoutDebugging(class App *const this /* r30 */) {
     // Local variables
     class Timer t; // r1+0x68
     class AutoTimer _at; // r1+0x28
@@ -894,7 +895,7 @@ void App::RunWithoutDebugging(class App * const this /* r30 */) {
 class TextStream {
     // total size: 0x4
 public:
-    void * __vptr$; // offset 0x0, size 0x4
+    void *__vptr$; // offset 0x0, size 0x4
 };
 enum DataType {
     kDataInt = 0,
@@ -923,7 +924,7 @@ class String : public TextStream {
     // total size: 0xC
 protected:
     unsigned int mCap; // offset 0x4, size 0x4
-    char * mStr; // offset 0x8, size 0x4
+    char *mStr; // offset 0x8, size 0x4
 };
 class Vector2 {
     // total size: 0x8
@@ -952,13 +953,13 @@ class StlNodeAlloc {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    int * _M_data; // offset 0x0, size 0x4
+    int *_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    int * _M_start; // offset 0x0, size 0x4
-    int * _M_finish; // offset 0x4, size 0x4
+    int *_M_start; // offset 0x0, size 0x4
+    int *_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 struct __false_type {
@@ -976,13 +977,13 @@ class StlNodeAlloc {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    class Vector3 * _M_data; // offset 0x0, size 0x4
+    class Vector3 *_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    class Vector3 * _M_start; // offset 0x0, size 0x4
-    class Vector3 * _M_finish; // offset 0x4, size 0x4
+    class Vector3 *_M_start; // offset 0x0, size 0x4
+    class Vector3 *_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -1011,20 +1012,20 @@ enum SeekType {
 class BinStream {
     // total size: 0xC
 public:
-    void * __vptr$; // offset 0x0, size 0x4
+    void *__vptr$; // offset 0x0, size 0x4
 private:
     unsigned char mLittleEndian; // offset 0x4, size 0x1
-    class Rand2 * mCrypto; // offset 0x8, size 0x4
+    class Rand2 *mCrypto; // offset 0x8, size 0x4
 };
 class TypeProps : public ObjRef {
     // total size: 0xC
-    class DataArray * mMap; // offset 0x4, size 0x4
-    class Object * mOwner; // offset 0x8, size 0x4
+    class DataArray *mMap; // offset 0x4, size 0x4
+    class Object *mOwner; // offset 0x8, size 0x4
 };
 struct Buf {
     // total size: 0x8
     int size; // offset 0x0, size 0x4
-    char * chars; // offset 0x4, size 0x4
+    char *chars; // offset 0x4, size 0x4
 };
 class StlNodeAlloc {
     // total size: 0x1
@@ -1032,13 +1033,13 @@ class StlNodeAlloc {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    struct Buf * _M_data; // offset 0x0, size 0x4
+    struct Buf *_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    struct Buf * _M_start; // offset 0x0, size 0x4
-    struct Buf * _M_finish; // offset 0x4, size 0x4
+    struct Buf *_M_start; // offset 0x0, size 0x4
+    struct Buf *_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -1047,7 +1048,7 @@ class vector : protected _Vector_base {
 class StringTable {
     // total size: 0x14
     class vector mBuffers; // offset 0x0, size 0xC
-    char * mCurChar; // offset 0xC, size 0x4
+    char *mCurChar; // offset 0xC, size 0x4
     int mCurBuf; // offset 0x10, size 0x4
 };
 enum LoaderPos {
@@ -1059,7 +1060,7 @@ enum LoaderPos {
 class Loader {
     // total size: 0x14
 public:
-    void * __vptr$; // offset 0x0, size 0x4
+    void *__vptr$; // offset 0x0, size 0x4
 protected:
     enum LoaderPos mPos; // offset 0x4, size 0x4
 private:
@@ -1067,9 +1068,9 @@ private:
 };
 struct Node {
     // total size: 0xC
-    class Object * object; // offset 0x0, size 0x4
-    struct Node * next; // offset 0x4, size 0x4
-    struct Node * prev; // offset 0x8, size 0x4
+    class Object *object; // offset 0x0, size 0x4
+    struct Node *next; // offset 0x4, size 0x4
+    struct Node *prev; // offset 0x8, size 0x4
 };
 enum ObjListMode {
     kObjListNoNull = 0,
@@ -1078,39 +1079,39 @@ enum ObjListMode {
 };
 class iterator {
     // total size: 0x4
-    struct Node * mNode; // offset 0x0, size 0x4
+    struct Node *mNode; // offset 0x0, size 0x4
 };
 class ObjPtrList : public ObjRef {
     // total size: 0x14
     int mSize; // offset 0x4, size 0x4
-    struct Node * mNodes; // offset 0x8, size 0x4
-    class Object * mOwner; // offset 0xC, size 0x4
+    struct Node *mNodes; // offset 0x8, size 0x4
+    class Object *mOwner; // offset 0xC, size 0x4
     enum ObjListMode mMode; // offset 0x10, size 0x4
 };
 class Callback {
     // total size: 0x4
 public:
-    void * __vptr$; // offset 0x0, size 0x4
+    void *__vptr$; // offset 0x0, size 0x4
 };
 class DirLoader : public Loader, public ObjRef {
     // total size: 0xA8
-    void (DirLoader::* mState)(void *, void *); // offset 0x18, size 0x4
+    void (DirLoader::*mState)(void *, void *); // offset 0x18, size 0x4
     class String mRoot; // offset 0x24, size 0xC
     unsigned char mOwnStream; // offset 0x30, size 0x1
-    class BinStream * mStream; // offset 0x34, size 0x4
+    class BinStream *mStream; // offset 0x34, size 0x4
     int mRev; // offset 0x38, size 0x4
     int mCounter; // offset 0x3C, size 0x4
     class ObjPtrList mObjects; // offset 0x40, size 0x14
-    class Callback * mCallback; // offset 0x54, size 0x4
-    class ObjectDir * mDir; // offset 0x58, size 0x4
+    class Callback *mCallback; // offset 0x54, size 0x4
+    class ObjectDir *mDir; // offset 0x58, size 0x4
     unsigned char mPostLoad; // offset 0x5C, size 0x1
     unsigned char mLoadDir; // offset 0x5D, size 0x1
     unsigned char mDeleteSelf; // offset 0x5E, size 0x1
-    const char * mProxyName; // offset 0x60, size 0x4
-    class ObjectDir * mProxyDir; // offset 0x64, size 0x4
+    const char *mProxyName; // offset 0x60, size 0x4
+    class ObjectDir *mProxyDir; // offset 0x64, size 0x4
     class Timer mTimer; // offset 0x68, size 0x38
     unsigned char mAccessed; // offset 0xA0, size 0x1
-    const char * mFileName; // offset 0xA4, size 0x4
+    const char *mFileName; // offset 0xA4, size 0x4
 };
 class StlNodeAlloc {
     // total size: 0x1
@@ -1118,13 +1119,13 @@ class StlNodeAlloc {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    class ObjDirPtr * _M_data; // offset 0x0, size 0x4
+    class ObjDirPtr *_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    class ObjDirPtr * _M_start; // offset 0x0, size 0x4
-    class ObjDirPtr * _M_finish; // offset 0x4, size 0x4
+    class ObjDirPtr *_M_start; // offset 0x0, size 0x4
+    class ObjDirPtr *_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -1147,13 +1148,13 @@ class StlNodeAlloc {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    class Viewport * _M_data; // offset 0x0, size 0x4
+    class Viewport *_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    class Viewport * _M_start; // offset 0x0, size 0x4
-    class Viewport * _M_finish; // offset 0x4, size 0x4
+    class Viewport *_M_start; // offset 0x0, size 0x4
+    class Viewport *_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -1186,30 +1187,30 @@ enum PropOp {
 class ObjectDir : public virtual Object {
     // total size: 0xAC
 public:
-    void * __vptr$; // offset 0x4, size 0x4
+    void *__vptr$; // offset 0x4, size 0x4
 private:
     class KeylessHash mHashTable; // offset 0x8, size 0x20
     class StringTable mStringTable; // offset 0x28, size 0x14
     class FilePath mProxyFile; // offset 0x3C, size 0xC
     unsigned char mProxyOverride; // offset 0x48, size 0x1
     unsigned char mInline; // offset 0x49, size 0x1
-    class DirLoader * mLoader; // offset 0x4C, size 0x4
+    class DirLoader *mLoader; // offset 0x4C, size 0x4
     class vector mSubDirs; // offset 0x50, size 0xC
     unsigned char mIsSubDir; // offset 0x5C, size 0x1
-    char * mPathName; // offset 0x60, size 0x4
+    char *mPathName; // offset 0x60, size 0x4
     class vector mViewports; // offset 0x64, size 0xC
     enum ViewportId mCurViewport; // offset 0x70, size 0x4
-    class Object * mCurAnim; // offset 0x74, size 0x4
-    class Object * mCurCam; // offset 0x78, size 0x4
-    const char * mDestFileName; // offset 0x7C, size 0x4
+    class Object *mCurAnim; // offset 0x74, size 0x4
+    class Object *mCurCam; // offset 0x78, size 0x4
+    const char *mDestFileName; // offset 0x7C, size 0x4
 };
 class StlNodeAlloc {
     // total size: 0x1
 };
 struct _List_node_base {
     // total size: 0x8
-    struct _List_node_base * _M_next; // offset 0x0, size 0x4
-    struct _List_node_base * _M_prev; // offset 0x4, size 0x4
+    struct _List_node_base *_M_next; // offset 0x0, size 0x4
+    struct _List_node_base *_M_prev; // offset 0x4, size 0x4
 };
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x8
@@ -1247,7 +1248,7 @@ public:
 };
 struct _List_iterator_base {
     // total size: 0x4
-    struct _List_node_base * _M_node; // offset 0x0, size 0x4
+    struct _List_node_base *_M_node; // offset 0x0, size 0x4
 };
 struct _List_iterator : public _List_iterator_base {
     // total size: 0x4
@@ -1260,10 +1261,10 @@ class Object : public ObjRef {
 protected:
     class TypeProps mTypeProps; // offset 0x4, size 0xC
 private:
-    class DataArray * mTypeDef; // offset 0x10, size 0x4
-    char * mNote; // offset 0x14, size 0x4
-    const char * mName; // offset 0x18, size 0x4
-    class ObjectDir * mDir; // offset 0x1C, size 0x4
+    class DataArray *mTypeDef; // offset 0x10, size 0x4
+    char *mNote; // offset 0x14, size 0x4
+    const char *mName; // offset 0x18, size 0x4
+    class ObjectDir *mDir; // offset 0x1C, size 0x4
     class list mRefs; // offset 0x20, size 0x8
 };
 class StlNodeAlloc {
@@ -1282,7 +1283,7 @@ enum SinkMode {
 };
 struct Sink {
     // total size: 0x8
-    class Object * obj; // offset 0x0, size 0x4
+    class Object *obj; // offset 0x0, size 0x4
     enum SinkMode mode; // offset 0x4, size 0x4
 };
 class StlNodeAlloc {
@@ -1346,7 +1347,7 @@ class list : public _List_base {
 class MsgSource : public virtual Object {
     // total size: 0x48
 public:
-    void * __vptr$; // offset 0x4, size 0x4
+    void *__vptr$; // offset 0x4, size 0x4
 private:
     class list mSinks; // offset 0x8, size 0x8
     class list mEventSinks; // offset 0x10, size 0x8
@@ -1365,13 +1366,13 @@ class StlNodeAlloc {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    class TourCharLocal * * _M_data; // offset 0x0, size 0x4
+    class TourCharLocal **_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    class TourCharLocal * * _M_start; // offset 0x0, size 0x4
-    class TourCharLocal * * _M_finish; // offset 0x4, size 0x4
+    class TourCharLocal **_M_start; // offset 0x0, size 0x4
+    class TourCharLocal **_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -1383,13 +1384,13 @@ class StlNodeAlloc {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    class TourBandLocal * * _M_data; // offset 0x0, size 0x4
+    class TourBandLocal **_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    class TourBandLocal * * _M_start; // offset 0x0, size 0x4
-    class TourBandLocal * * _M_finish; // offset 0x4, size 0x4
+    class TourBandLocal **_M_start; // offset 0x0, size 0x4
+    class TourBandLocal **_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -1401,13 +1402,13 @@ class StlNodeAlloc {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    class RemoteBandData * * _M_data; // offset 0x0, size 0x4
+    class RemoteBandData **_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    class RemoteBandData * * _M_start; // offset 0x0, size 0x4
-    class RemoteBandData * * _M_finish; // offset 0x4, size 0x4
+    class RemoteBandData **_M_start; // offset 0x0, size 0x4
+    class RemoteBandData **_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -1419,13 +1420,13 @@ class StlNodeAlloc {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    class Symbol * _M_data; // offset 0x0, size 0x4
+    class Symbol *_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    class Symbol * _M_start; // offset 0x0, size 0x4
-    class Symbol * _M_finish; // offset 0x4, size 0x4
+    class Symbol *_M_start; // offset 0x0, size 0x4
+    class Symbol *_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -1442,13 +1443,13 @@ class StlNodeAlloc {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    struct BeatData * _M_data; // offset 0x0, size 0x4
+    struct BeatData *_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    struct BeatData * _M_start; // offset 0x0, size 0x4
-    struct BeatData * _M_finish; // offset 0x4, size 0x4
+    struct BeatData *_M_start; // offset 0x0, size 0x4
+    struct BeatData *_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -1479,9 +1480,9 @@ class StlNodeAlloc {
 struct _Rb_tree_node_base {
     // total size: 0x10
     unsigned char _M_color; // offset 0x0, size 0x1
-    struct _Rb_tree_node_base * _M_parent; // offset 0x4, size 0x4
-    struct _Rb_tree_node_base * _M_left; // offset 0x8, size 0x4
-    struct _Rb_tree_node_base * _M_right; // offset 0xC, size 0x4
+    struct _Rb_tree_node_base *_M_parent; // offset 0x4, size 0x4
+    struct _Rb_tree_node_base *_M_left; // offset 0x8, size 0x4
+    struct _Rb_tree_node_base *_M_right; // offset 0xC, size 0x4
 };
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x10
@@ -1525,7 +1526,7 @@ enum VocalStyle {
 class GameplayOptions : public virtual Object {
     // total size: 0x48
 public:
-    void * __vptr$; // offset 0x4, size 0x4
+    void *__vptr$; // offset 0x4, size 0x4
 private:
     int mMicGain; // offset 0x8, size 0x4
     int mVocalVolume; // offset 0xC, size 0x4
@@ -1536,7 +1537,7 @@ private:
 class RndHighlightable : public virtual Object {
     // total size: 0x34
 public:
-    void * __vptr$; // offset 0x4, size 0x4
+    void *__vptr$; // offset 0x4, size 0x4
 };
 class Sphere {
     // total size: 0x20
@@ -1579,8 +1580,8 @@ class list : public _List_base {
 class ObjOwnerPtr : public ObjRef {
     // total size: 0xC
 protected:
-    class Object * mOwner; // offset 0x4, size 0x4
-    class RndTransformable * mPtr; // offset 0x8, size 0x4
+    class Object *mOwner; // offset 0x4, size 0x4
+    class RndTransformable *mPtr; // offset 0x8, size 0x4
 };
 class StlNodeAlloc {
     // total size: 0x1
@@ -1615,13 +1616,13 @@ enum Constraint {
 class ObjPtr : public ObjRef {
     // total size: 0xC
 protected:
-    class Object * mOwner; // offset 0x4, size 0x4
-    class RndTransformable * mPtr; // offset 0x8, size 0x4
+    class Object *mOwner; // offset 0x4, size 0x4
+    class RndTransformable *mPtr; // offset 0x8, size 0x4
 };
 class RndTransformable : public virtual RndHighlightable {
     // total size: 0xF0
 public:
-    void * __vptr$; // offset 0x4, size 0x4
+    void *__vptr$; // offset 0x4, size 0x4
 private:
     class ObjOwnerPtr mParent; // offset 0x8, size 0xC
     class list mChildren; // offset 0x14, size 0x8
@@ -1654,12 +1655,12 @@ class RndBitmap {
     unsigned short mRowBytes; // offset 0x4, size 0x2
     unsigned char mBpp; // offset 0x6, size 0x1
     unsigned int mOrder; // offset 0x8, size 0x4
-    unsigned char * mPixels; // offset 0xC, size 0x4
-    unsigned char * mPalette; // offset 0x10, size 0x4
-    unsigned char * mBuffer; // offset 0x14, size 0x4
-    class RndBitmap * mMip; // offset 0x18, size 0x4
+    unsigned char *mPixels; // offset 0xC, size 0x4
+    unsigned char *mPalette; // offset 0x10, size 0x4
+    unsigned char *mBuffer; // offset 0x14, size 0x4
+    class RndBitmap *mMip; // offset 0x18, size 0x4
     unsigned char mAlphaBpp; // offset 0x1C, size 0x1
-    class RndBitmap * mAlphaBmp; // offset 0x20, size 0x4
+    class RndBitmap *mAlphaBmp; // offset 0x20, size 0x4
 };
 enum Type {
     kRegular = 1,
@@ -1676,12 +1677,12 @@ enum Type {
 class File {
     // total size: 0x4
 public:
-    void * __vptr$; // offset 0x0, size 0x4
+    void *__vptr$; // offset 0x0, size 0x4
 };
 class FileLoader : public Loader {
     // total size: 0x24
-    class File * mFile; // offset 0x14, size 0x4
-    char * mBuffer; // offset 0x18, size 0x4
+    class File *mFile; // offset 0x14, size 0x4
+    char *mBuffer; // offset 0x18, size 0x4
     int mBufLen; // offset 0x1C, size 0x4
     unsigned char mAccessed; // offset 0x20, size 0x1
 };
@@ -1697,13 +1698,13 @@ protected:
     int mBpp; // offset 0x60, size 0x4
     class FilePath mFile; // offset 0x64, size 0xC
     int mNumMips; // offset 0x70, size 0x4
-    class FileLoader * mLoader; // offset 0x74, size 0x4
+    class FileLoader *mLoader; // offset 0x74, size 0x4
 };
 class ObjPtr : public ObjRef {
     // total size: 0xC
 protected:
-    class Object * mOwner; // offset 0x4, size 0x4
-    class RndTex * mPtr; // offset 0x8, size 0x4
+    class Object *mOwner; // offset 0x4, size 0x4
+    class RndTex *mPtr; // offset 0x8, size 0x4
 };
 class Vector4 {
     // total size: 0x10
@@ -1733,7 +1734,7 @@ protected:
 class RndDrawable : public virtual RndHighlightable {
     // total size: 0x70
 public:
-    void * __vptr$; // offset 0x4, size 0x4
+    void *__vptr$; // offset 0x4, size 0x4
 private:
     unsigned char mShowing; // offset 0x8, size 0x1
     class Sphere mSphere; // offset 0x10, size 0x20
@@ -1778,7 +1779,7 @@ class list : public _List_base {
 class RndAnimatable : public virtual Object {
     // total size: 0x3C
 public:
-    void * __vptr$; // offset 0x4, size 0x4
+    void *__vptr$; // offset 0x4, size 0x4
 private:
     float mFrame; // offset 0x8, size 0x4
     enum Rate mRate; // offset 0xC, size 0x4
@@ -1805,18 +1806,18 @@ class list : public _List_base {
 class RndPollable : public virtual Object {
     // total size: 0x34
 public:
-    void * __vptr$; // offset 0x4, size 0x4
+    void *__vptr$; // offset 0x4, size 0x4
 };
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    class RndDrawable * * _M_data; // offset 0x0, size 0x4
+    class RndDrawable **_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    class RndDrawable * * _M_start; // offset 0x0, size 0x4
-    class RndDrawable * * _M_finish; // offset 0x4, size 0x4
+    class RndDrawable **_M_start; // offset 0x0, size 0x4
+    class RndDrawable **_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -1825,13 +1826,13 @@ class vector : protected _Vector_base {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    class RndAnimatable * * _M_data; // offset 0x0, size 0x4
+    class RndAnimatable **_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    class RndAnimatable * * _M_start; // offset 0x0, size 0x4
-    class RndAnimatable * * _M_finish; // offset 0x4, size 0x4
+    class RndAnimatable **_M_start; // offset 0x0, size 0x4
+    class RndAnimatable **_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -1840,13 +1841,13 @@ class vector : protected _Vector_base {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    class RndPollable * * _M_data; // offset 0x0, size 0x4
+    class RndPollable **_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    class RndPollable * * _M_start; // offset 0x0, size 0x4
-    class RndPollable * * _M_finish; // offset 0x4, size 0x4
+    class RndPollable **_M_start; // offset 0x0, size 0x4
+    class RndPollable **_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -1855,15 +1856,15 @@ class vector : protected _Vector_base {
 class ObjPtrList : public ObjRef {
     // total size: 0x14
     int mSize; // offset 0x4, size 0x4
-    struct Node * mNodes; // offset 0x8, size 0x4
-    class Object * mOwner; // offset 0xC, size 0x4
+    struct Node *mNodes; // offset 0x8, size 0x4
+    class Object *mOwner; // offset 0xC, size 0x4
     enum ObjListMode mMode; // offset 0x10, size 0x4
 };
 class ObjOwnerPtr : public ObjRef {
     // total size: 0xC
 protected:
-    class Object * mOwner; // offset 0x4, size 0x4
-    class RndLight * mPtr; // offset 0x8, size 0x4
+    class Object *mOwner; // offset 0x4, size 0x4
+    class RndLight *mPtr; // offset 0x8, size 0x4
 };
 enum Type {
     kPoint = 0,
@@ -1875,8 +1876,8 @@ enum Type {
 class ObjPtrList : public ObjRef {
     // total size: 0x14
     int mSize; // offset 0x4, size 0x4
-    struct Node * mNodes; // offset 0x8, size 0x4
-    class Object * mOwner; // offset 0xC, size 0x4
+    struct Node *mNodes; // offset 0x8, size 0x4
+    class Object *mOwner; // offset 0xC, size 0x4
     enum ObjListMode mMode; // offset 0x10, size 0x4
 };
 class RndLight : public RndTransformable {
@@ -1895,22 +1896,22 @@ protected:
     float mBotRadius; // offset 0xF4, size 0x4
     float mDisplacement; // offset 0xF8, size 0x4
     class ObjPtr mProjection; // offset 0xFC, size 0xC
-    class ObjPtrList * mShadowCasters; // offset 0x108, size 0x4
+    class ObjPtrList *mShadowCasters; // offset 0x108, size 0x4
     float mRadScale; // offset 0x10C, size 0x4
     float mRadOffset; // offset 0x110, size 0x4
 };
 class ObjPtrList : public ObjRef {
     // total size: 0x14
     int mSize; // offset 0x4, size 0x4
-    struct Node * mNodes; // offset 0x8, size 0x4
-    class Object * mOwner; // offset 0xC, size 0x4
+    struct Node *mNodes; // offset 0x8, size 0x4
+    class Object *mOwner; // offset 0xC, size 0x4
     enum ObjListMode mMode; // offset 0x10, size 0x4
 };
 class ObjOwnerPtr : public ObjRef {
     // total size: 0xC
 protected:
-    class Object * mOwner; // offset 0x4, size 0x4
-    class RndEnviron * mPtr; // offset 0x8, size 0x4
+    class Object *mOwner; // offset 0x4, size 0x4
+    class RndEnviron *mPtr; // offset 0x8, size 0x4
 };
 class RndColorXfm {
     // total size: 0xA0
@@ -1949,10 +1950,15 @@ protected:
 class ObjPtr : public ObjRef {
     // total size: 0xC
 protected:
-    class Object * mOwner; // offset 0x4, size 0x4
-    class RndEnviron * mPtr; // offset 0x8, size 0x4
+    class Object *mOwner; // offset 0x4, size 0x4
+    class RndEnviron *mPtr; // offset 0x8, size 0x4
 };
-class RndDir : public ObjectDir, public RndDrawable, public RndAnimatable, public RndTransformable, public RndPollable, public MsgSource {
+class RndDir : public ObjectDir,
+               public RndDrawable,
+               public RndAnimatable,
+               public RndTransformable,
+               public RndPollable,
+               public MsgSource {
     // total size: 0x230
 protected:
     class vector mDraws; // offset 0x1AC, size 0xC
@@ -1965,8 +1971,8 @@ protected:
 class ObjPtr : public ObjRef {
     // total size: 0xC
 protected:
-    class Object * mOwner; // offset 0x4, size 0x4
-    class RndDrawable * mPtr; // offset 0x8, size 0x4
+    class Object *mOwner; // offset 0x4, size 0x4
+    class RndDrawable *mPtr; // offset 0x8, size 0x4
 };
 class RndGroup : public RndAnimatable, public RndDrawable, public RndTransformable {
     // total size: 0x1A0
@@ -1982,8 +1988,8 @@ protected:
 class ObjPtr : public ObjRef {
     // total size: 0xC
 protected:
-    class Object * mOwner; // offset 0x4, size 0x4
-    class RndGroup * mPtr; // offset 0x8, size 0x4
+    class Object *mOwner; // offset 0x4, size 0x4
+    class RndGroup *mPtr; // offset 0x8, size 0x4
 };
 class Lod {
     // total size: 0x10
@@ -1997,13 +2003,13 @@ class StlNodeAlloc {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    class Lod * _M_data; // offset 0x0, size 0x4
+    class Lod *_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    class Lod * _M_start; // offset 0x0, size 0x4
-    class Lod * _M_finish; // offset 0x4, size 0x4
+    class Lod *_M_start; // offset 0x0, size 0x4
+    class Lod *_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -2011,7 +2017,7 @@ class vector : protected _Vector_base {
 };
 class ObjVector : public vector {
     // total size: 0x10
-    class Object * mOwner; // offset 0xC, size 0x4
+    class Object *mOwner; // offset 0xC, size 0x4
 };
 class StlNodeAlloc {
     // total size: 0x1
@@ -2019,13 +2025,13 @@ class StlNodeAlloc {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    class ShadowBone * * _M_data; // offset 0x0, size 0x4
+    class ShadowBone **_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    class ShadowBone * * _M_start; // offset 0x0, size 0x4
-    class ShadowBone * * _M_finish; // offset 0x4, size 0x4
+    class ShadowBone **_M_start; // offset 0x0, size 0x4
+    class ShadowBone **_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -2045,8 +2051,8 @@ protected:
     int mLastLod; // offset 0x204, size 0x4
     int mMinLod; // offset 0x208, size 0x4
     class ObjPtr mShadow; // offset 0x20C, size 0xC
-    class CharDriver * mDriver; // offset 0x218, size 0x4
-    class CharWalk * mWalk; // offset 0x21C, size 0x4
+    class CharDriver *mDriver; // offset 0x218, size 0x4
+    class CharWalk *mWalk; // offset 0x21C, size 0x4
     unsigned char mSelfShadow; // offset 0x220, size 0x1
     unsigned char mSpotCutout; // offset 0x221, size 0x1
     unsigned char mFloorShadow; // offset 0x222, size 0x1
@@ -2054,13 +2060,13 @@ protected:
     class Sphere mBounding; // offset 0x230, size 0x20
     class vector mShadowBones; // offset 0x250, size 0xC
     enum PollState mPollState; // offset 0x25C, size 0x4
-    class CharacterTest * mTest; // offset 0x260, size 0x4
+    class CharacterTest *mTest; // offset 0x260, size 0x4
 };
 class ObjPtr : public ObjRef {
     // total size: 0xC
 protected:
-    class Object * mOwner; // offset 0x4, size 0x4
-    class CompositeCharacter * mPtr; // offset 0x8, size 0x4
+    class Object *mOwner; // offset 0x4, size 0x4
+    class CompositeCharacter *mPtr; // offset 0x8, size 0x4
 };
 class StlNodeAlloc {
     // total size: 0x1
@@ -2087,17 +2093,17 @@ class list : public _List_base {
 class Callback {
     // total size: 0x4
 public:
-    void * __vptr$; // offset 0x0, size 0x4
+    void *__vptr$; // offset 0x0, size 0x4
 };
 class RndOverlay : public TextStream {
     // total size: 0x80
-    const char * mName; // offset 0x4, size 0x4
+    const char *mName; // offset 0x4, size 0x4
     unsigned char mShowing; // offset 0x8, size 0x1
     class list mLines; // offset 0xC, size 0x8
     struct _List_iterator mLine; // offset 0x14, size 0x4
     class Color mColor; // offset 0x20, size 0x10
     int mCursorChar; // offset 0x30, size 0x4
-    class Callback * mCallback; // offset 0x34, size 0x4
+    class Callback *mCallback; // offset 0x34, size 0x4
     class Timer mTimer; // offset 0x38, size 0x38
     float mTimeout; // offset 0x70, size 0x4
 };
@@ -2109,13 +2115,13 @@ enum Action {
 class MergeFilter {
     // total size: 0x8
 public:
-    void * __vptr$; // offset 0x0, size 0x4
+    void *__vptr$; // offset 0x0, size 0x4
 private:
     enum Action mAction; // offset 0x4, size 0x4
 };
 struct Outfit {
     // total size: 0xC
-    const class DataArray * data; // offset 0x0, size 0x4
+    const class DataArray *data; // offset 0x0, size 0x4
     int hide; // offset 0x4, size 0x4
     int exclude; // offset 0x8, size 0x4
 };
@@ -2125,13 +2131,13 @@ class StlNodeAlloc {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    struct Outfit * _M_data; // offset 0x0, size 0x4
+    struct Outfit *_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    struct Outfit * _M_start; // offset 0x0, size 0x4
-    struct Outfit * _M_finish; // offset 0x4, size 0x4
+    struct Outfit *_M_start; // offset 0x0, size 0x4
+    struct Outfit *_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -2140,7 +2146,7 @@ class vector : protected _Vector_base {
 struct Category {
     // total size: 0x48
     int selected; // offset 0x0, size 0x4
-    const class DataArray * data; // offset 0x4, size 0x4
+    const class DataArray *data; // offset 0x4, size 0x4
     int desired; // offset 0x8, size 0x4
     int shown; // offset 0xC, size 0x4
     int current; // offset 0x10, size 0x4
@@ -2157,13 +2163,13 @@ class StlNodeAlloc {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    struct Category * _M_data; // offset 0x0, size 0x4
+    struct Category *_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    struct Category * _M_start; // offset 0x0, size 0x4
-    struct Category * _M_finish; // offset 0x4, size 0x4
+    struct Category *_M_start; // offset 0x0, size 0x4
+    struct Category *_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -2172,8 +2178,8 @@ class vector : protected _Vector_base {
 class ObjPtr : public ObjRef {
     // total size: 0xC
 protected:
-    class Object * mOwner; // offset 0x4, size 0x4
-    class Object * mPtr; // offset 0x8, size 0x4
+    class Object *mOwner; // offset 0x4, size 0x4
+    class Object *mPtr; // offset 0x8, size 0x4
 };
 class StlNodeAlloc {
     // total size: 0x1
@@ -2186,7 +2192,7 @@ public:
 struct LoaderDesc {
     // total size: 0x14
     class FilePath file; // offset 0x0, size 0xC
-    struct Category * cat; // offset 0xC, size 0x4
+    struct Category *cat; // offset 0xC, size 0x4
     int outfit; // offset 0x10, size 0x4
 };
 class _List_base {
@@ -2202,12 +2208,14 @@ class OutfitLoader : public Object, public Callback, public MergeFilter {
 protected:
     class FilePath mDirectory; // offset 0x34, size 0xC
     class vector mCategories; // offset 0x40, size 0xC
-    class DataArray * mExclusions; // offset 0x4C, size 0x4
-    unsigned char (* mCanShowCB)(class OutfitLoader *, struct Category *, int); // offset 0x50, size 0x4
+    class DataArray *mExclusions; // offset 0x4C, size 0x4
+    unsigned char (*mCanShowCB)(class OutfitLoader *, struct Category *, int); // offset
+                                                                               // 0x50,
+                                                                               // size 0x4
     class ObjPtr mMergeBackObj; // offset 0x54, size 0xC
     unsigned char mAsyncLoad; // offset 0x60, size 0x1
     unsigned char mLoadingLoad; // offset 0x61, size 0x1
-    class Loader * mCurLoader; // offset 0x64, size 0x4
+    class Loader *mCurLoader; // offset 0x64, size 0x4
     class list mFilesPending; // offset 0x68, size 0x8
 };
 enum ClipMode {
@@ -2221,13 +2229,13 @@ enum ClipMode {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    class String * _M_data; // offset 0x0, size 0x4
+    class String *_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    class String * _M_start; // offset 0x0, size 0x4
-    class String * _M_finish; // offset 0x4, size 0x4
+    class String *_M_start; // offset 0x0, size 0x4
+    class String *_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -2243,13 +2251,13 @@ class StlNodeAlloc {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    struct Triangle * _M_data; // offset 0x0, size 0x4
+    struct Triangle *_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    struct Triangle * _M_start; // offset 0x0, size 0x4
-    struct Triangle * _M_finish; // offset 0x4, size 0x4
+    struct Triangle *_M_start; // offset 0x0, size 0x4
+    struct Triangle *_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -2299,8 +2307,8 @@ enum TexWrap {
 class ObjPtr : public ObjRef {
     // total size: 0xC
 protected:
-    class Object * mOwner; // offset 0x4, size 0x4
-    class RndMat * mPtr; // offset 0x8, size 0x4
+    class Object *mOwner; // offset 0x4, size 0x4
+    class RndMat *mPtr; // offset 0x8, size 0x4
 };
 struct bf {
     // total size: 0x4
@@ -2377,13 +2385,13 @@ class StlNodeAlloc {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    class RndMat * * _M_data; // offset 0x0, size 0x4
+    class RndMat **_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    class RndMat * * _M_start; // offset 0x0, size 0x4
-    class RndMat * * _M_finish; // offset 0x4, size 0x4
+    class RndMat **_M_start; // offset 0x0, size 0x4
+    class RndMat **_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -2392,8 +2400,8 @@ class vector : protected _Vector_base {
 class ObjPtr : public ObjRef {
     // total size: 0xC
 protected:
-    class Object * mOwner; // offset 0x4, size 0x4
-    class RndCam * mPtr; // offset 0x8, size 0x4
+    class Object *mOwner; // offset 0x4, size 0x4
+    class RndCam *mPtr; // offset 0x8, size 0x4
 };
 class RndTexRenderer : public RndDrawable, public RndAnimatable {
     // total size: 0xB0
@@ -2416,13 +2424,13 @@ class StlNodeAlloc {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    class RndTexRenderer * * _M_data; // offset 0x0, size 0x4
+    class RndTexRenderer **_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    class RndTexRenderer * * _M_start; // offset 0x0, size 0x4
-    class RndTexRenderer * * _M_finish; // offset 0x4, size 0x4
+    class RndTexRenderer **_M_start; // offset 0x0, size 0x4
+    class RndTexRenderer **_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -2434,13 +2442,13 @@ class StlNodeAlloc {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    class Color * _M_data; // offset 0x0, size 0x4
+    class Color *_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    class Color * _M_start; // offset 0x0, size 0x4
-    class Color * _M_finish; // offset 0x4, size 0x4
+    class Color *_M_start; // offset 0x0, size 0x4
+    class Color *_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -2454,8 +2462,8 @@ public:
 class ObjPtr : public ObjRef {
     // total size: 0xC
 protected:
-    class Object * mOwner; // offset 0x4, size 0x4
-    class ColorPalette * mPtr; // offset 0x8, size 0x4
+    class Object *mOwner; // offset 0x4, size 0x4
+    class ColorPalette *mPtr; // offset 0x8, size 0x4
 };
 class StlNodeAlloc {
     // total size: 0x1
@@ -2498,19 +2506,19 @@ protected:
 };
 struct Node {
     // total size: 0xC
-    class CharCollide * object; // offset 0x0, size 0x4
-    struct Node * next; // offset 0x4, size 0x4
-    struct Node * prev; // offset 0x8, size 0x4
+    class CharCollide *object; // offset 0x0, size 0x4
+    struct Node *next; // offset 0x4, size 0x4
+    struct Node *prev; // offset 0x8, size 0x4
 };
 class iterator {
     // total size: 0x4
-    struct Node * mNode; // offset 0x0, size 0x4
+    struct Node *mNode; // offset 0x0, size 0x4
 };
 class ObjPtrList : public ObjRef {
     // total size: 0x14
     int mSize; // offset 0x4, size 0x4
-    struct Node * mNodes; // offset 0x8, size 0x4
-    class Object * mOwner; // offset 0xC, size 0x4
+    struct Node *mNodes; // offset 0x8, size 0x4
+    class Object *mOwner; // offset 0xC, size 0x4
     enum ObjListMode mMode; // offset 0x10, size 0x4
 };
 struct Point {
@@ -2534,13 +2542,13 @@ class StlNodeAlloc {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    struct Point * _M_data; // offset 0x0, size 0x4
+    struct Point *_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    struct Point * _M_start; // offset 0x0, size 0x4
-    struct Point * _M_finish; // offset 0x4, size 0x4
+    struct Point *_M_start; // offset 0x0, size 0x4
+    struct Point *_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -2548,7 +2556,7 @@ class vector : protected _Vector_base {
 };
 class ObjVector : public vector {
     // total size: 0x10
-    class Object * mOwner; // offset 0xC, size 0x4
+    class Object *mOwner; // offset 0xC, size 0x4
 };
 class Strand {
     // total size: 0x90
@@ -2569,13 +2577,13 @@ class StlNodeAlloc {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    class Strand * _M_data; // offset 0x0, size 0x4
+    class Strand *_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    class Strand * _M_start; // offset 0x0, size 0x4
-    class Strand * _M_finish; // offset 0x4, size 0x4
+    class Strand *_M_start; // offset 0x0, size 0x4
+    class Strand *_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -2583,7 +2591,7 @@ class vector : protected _Vector_base {
 };
 class ObjVector : public vector {
     // total size: 0x10
-    class Object * mOwner; // offset 0xC, size 0x4
+    class Object *mOwner; // offset 0xC, size 0x4
 };
 class CharHair : public RndHighlightable, public CharPollable {
     // total size: 0x74
@@ -2604,8 +2612,8 @@ protected:
 class ObjPtrList : public ObjRef {
     // total size: 0x14
     int mSize; // offset 0x4, size 0x4
-    struct Node * mNodes; // offset 0x8, size 0x4
-    class Object * mOwner; // offset 0xC, size 0x4
+    struct Node *mNodes; // offset 0x8, size 0x4
+    class Object *mOwner; // offset 0xC, size 0x4
     enum ObjListMode mMode; // offset 0x10, size 0x4
 };
 class Vert {
@@ -2622,7 +2630,7 @@ public:
 };
 class VertVector {
     // total size: 0x8
-    class Vert * mVerts; // offset 0x0, size 0x4
+    class Vert *mVerts; // offset 0x0, size 0x4
     int mNumVerts; // offset 0x4, size 0x4
 };
 class Face {
@@ -2638,13 +2646,13 @@ class StlNodeAlloc {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    class Face * _M_data; // offset 0x0, size 0x4
+    class Face *_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    class Face * _M_start; // offset 0x0, size 0x4
-    class Face * _M_finish; // offset 0x4, size 0x4
+    class Face *_M_start; // offset 0x0, size 0x4
+    class Face *_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -2656,13 +2664,13 @@ class StlNodeAlloc {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    unsigned char * _M_data; // offset 0x0, size 0x4
+    unsigned char *_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    unsigned char * _M_start; // offset 0x0, size 0x4
-    unsigned char * _M_finish; // offset 0x4, size 0x4
+    unsigned char *_M_start; // offset 0x0, size 0x4
+    unsigned char *_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -2671,8 +2679,8 @@ class vector : protected _Vector_base {
 class ObjOwnerPtr : public ObjRef {
     // total size: 0xC
 protected:
-    class Object * mOwner; // offset 0x4, size 0x4
-    class RndMesh * mPtr; // offset 0x8, size 0x4
+    class Object *mOwner; // offset 0x4, size 0x4
+    class RndMesh *mPtr; // offset 0x8, size 0x4
 };
 class RndBone {
     // total size: 0x50
@@ -2686,13 +2694,13 @@ class StlNodeAlloc {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    class RndBone * _M_data; // offset 0x0, size 0x4
+    class RndBone *_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    class RndBone * _M_start; // offset 0x0, size 0x4
-    class RndBone * _M_finish; // offset 0x4, size 0x4
+    class RndBone *_M_start; // offset 0x0, size 0x4
+    class RndBone *_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -2700,7 +2708,7 @@ class vector : protected _Vector_base {
 };
 class ObjVector : public vector {
     // total size: 0x10
-    class Object * mOwner; // offset 0xC, size 0x4
+    class Object *mOwner; // offset 0xC, size 0x4
 };
 enum Volume {
     kEmpty = 0,
@@ -2712,8 +2720,8 @@ class BSPNode {
     // total size: 0x20
 public:
     class Plane plane; // offset 0x0, size 0x10
-    class BSPNode * front; // offset 0x10, size 0x4
-    class BSPNode * back; // offset 0x14, size 0x4
+    class BSPNode *front; // offset 0x10, size 0x4
+    class BSPNode *back; // offset 0x14, size 0x4
 };
 struct AdjEdge {
     // total size: 0xC
@@ -2729,27 +2737,27 @@ struct AdjTriangle {
 struct ADJACENCIESCREATE {
     // total size: 0xC
     unsigned int NbFaces; // offset 0x0, size 0x4
-    unsigned int * DFaces; // offset 0x4, size 0x4
-    unsigned short * WFaces; // offset 0x8, size 0x4
+    unsigned int *DFaces; // offset 0x4, size 0x4
+    unsigned short *WFaces; // offset 0x8, size 0x4
 };
 class Adjacencies {
     // total size: 0x14
     unsigned int mNbEdges; // offset 0x0, size 0x4
     unsigned int mCurrentNbFaces; // offset 0x4, size 0x4
-    struct AdjEdge * mEdges; // offset 0x8, size 0x4
+    struct AdjEdge *mEdges; // offset 0x8, size 0x4
 public:
     unsigned int mNbFaces; // offset 0xC, size 0x4
-    struct AdjTriangle * mFaces; // offset 0x10, size 0x4
+    struct AdjTriangle *mFaces; // offset 0x10, size 0x4
 };
 struct CustomBlock {
     // total size: 0xC
-    void * Addy; // offset 0x0, size 0x4
+    void *Addy; // offset 0x0, size 0x4
     unsigned long Size; // offset 0x4, size 0x4
     unsigned long Max; // offset 0x8, size 0x4
 };
 struct CustomCell {
     // total size: 0x10
-    struct CustomCell * NextCustomCell; // offset 0x0, size 0x4
+    struct CustomCell *NextCustomCell; // offset 0x0, size 0x4
     struct CustomBlock Item; // offset 0x4, size 0xC
 };
 struct __file_modes {
@@ -2779,27 +2787,33 @@ struct _FILE {
     unsigned char ungetc_buffer[2]; // offset 0xF, size 0x2
     wchar_t ungetwc_buffer[2]; // offset 0x12, size 0x4
     unsigned long position; // offset 0x18, size 0x4
-    unsigned char * buffer; // offset 0x1C, size 0x4
+    unsigned char *buffer; // offset 0x1C, size 0x4
     unsigned long buffer_size; // offset 0x20, size 0x4
-    unsigned char * buffer_ptr; // offset 0x24, size 0x4
+    unsigned char *buffer_ptr; // offset 0x24, size 0x4
     unsigned long buffer_len; // offset 0x28, size 0x4
     unsigned long buffer_alignment; // offset 0x2C, size 0x4
     unsigned long saved_buffer_len; // offset 0x30, size 0x4
     unsigned long buffer_pos; // offset 0x34, size 0x4
-    int (* position_proc)(unsigned long, unsigned long *, int, void *); // offset 0x38, size 0x4
-    int (* read_proc)(unsigned long, unsigned char *, unsigned long *, void *); // offset 0x3C, size 0x4
-    int (* write_proc)(unsigned long, unsigned char *, unsigned long *, void *); // offset 0x40, size 0x4
-    int (* close_proc)(unsigned long); // offset 0x44, size 0x4
-    void * ref_con; // offset 0x48, size 0x4
-    struct _FILE * next_file_struct; // offset 0x4C, size 0x4
+    int (*position_proc)(unsigned long, unsigned long *, int, void *); // offset 0x38,
+                                                                       // size 0x4
+    int (*read_proc)(unsigned long, unsigned char *, unsigned long *, void *); // offset
+                                                                               // 0x3C,
+                                                                               // size 0x4
+    int (*write_proc)(unsigned long, unsigned char *, unsigned long *, void *); // offset
+                                                                                // 0x40,
+                                                                                // size
+                                                                                // 0x4
+    int (*close_proc)(unsigned long); // offset 0x44, size 0x4
+    void *ref_con; // offset 0x48, size 0x4
+    struct _FILE *next_file_struct; // offset 0x4C, size 0x4
 };
 class CustomArray {
     // total size: 0x1C
-    struct CustomCell * mCurrentCell; // offset 0x0, size 0x4
-    struct CustomCell * mInitCell; // offset 0x4, size 0x4
-    void * mCollapsed; // offset 0x8, size 0x4
-    void * mAddresses; // offset 0xC, size 0x4
-    void * mLastAddress; // offset 0x10, size 0x4
+    struct CustomCell *mCurrentCell; // offset 0x0, size 0x4
+    struct CustomCell *mInitCell; // offset 0x4, size 0x4
+    void *mCollapsed; // offset 0x8, size 0x4
+    void *mAddresses; // offset 0xC, size 0x4
+    void *mLastAddress; // offset 0x10, size 0x4
     unsigned short mNbPushedAddies; // offset 0x14, size 0x2
     unsigned short mNbAllocatedAddies; // offset 0x16, size 0x2
     unsigned char mBitCount; // offset 0x18, size 0x1
@@ -2808,15 +2822,15 @@ class CustomArray {
 struct STRIPERRESULT {
     // total size: 0x10
     unsigned int NbStrips; // offset 0x0, size 0x4
-    unsigned int * StripLengths; // offset 0x4, size 0x4
-    void * StripRuns; // offset 0x8, size 0x4
+    unsigned int *StripLengths; // offset 0x4, size 0x4
+    void *StripRuns; // offset 0x8, size 0x4
     unsigned char AskForWords; // offset 0xC, size 0x1
 };
 struct STRIPERCREATE {
     // total size: 0x10
     unsigned int NbFaces; // offset 0x0, size 0x4
-    unsigned int * DFaces; // offset 0x4, size 0x4
-    unsigned short * WFaces; // offset 0x8, size 0x4
+    unsigned int *DFaces; // offset 0x4, size 0x4
+    unsigned short *WFaces; // offset 0x8, size 0x4
     unsigned char AskForWords; // offset 0xC, size 0x1
     unsigned char OneSided; // offset 0xD, size 0x1
     unsigned char SGIAlgorithm; // offset 0xE, size 0x1
@@ -2824,13 +2838,13 @@ struct STRIPERCREATE {
 };
 class Striper {
     // total size: 0x20
-    class Adjacencies * mAdj; // offset 0x0, size 0x4
-    unsigned char * mTags; // offset 0x4, size 0x4
+    class Adjacencies *mAdj; // offset 0x0, size 0x4
+    unsigned char *mTags; // offset 0x4, size 0x4
     unsigned int mNbStrips; // offset 0x8, size 0x4
-    class CustomArray * mStripLengths; // offset 0xC, size 0x4
-    class CustomArray * mStripRuns; // offset 0x10, size 0x4
+    class CustomArray *mStripLengths; // offset 0xC, size 0x4
+    class CustomArray *mStripRuns; // offset 0x10, size 0x4
     unsigned int mTotalLength; // offset 0x14, size 0x4
-    class CustomArray * mSingleStrip; // offset 0x18, size 0x4
+    class CustomArray *mSingleStrip; // offset 0x18, size 0x4
     unsigned char mAskForWords; // offset 0x1C, size 0x1
     unsigned char mOneSided; // offset 0x1D, size 0x1
     unsigned char mSGIAlgorithm; // offset 0x1E, size 0x1
@@ -2847,13 +2861,13 @@ protected:
     class ObjVector mBones; // offset 0x130, size 0x10
     int mMutable; // offset 0x140, size 0x4
     enum Volume mVolume; // offset 0x144, size 0x4
-    class BSPNode * mBSPTree; // offset 0x148, size 0x4
+    class BSPNode *mBSPTree; // offset 0x148, size 0x4
 };
 class ObjPtrList : public ObjRef {
     // total size: 0x14
     int mSize; // offset 0x4, size 0x4
-    struct Node * mNodes; // offset 0x8, size 0x4
-    class Object * mOwner; // offset 0xC, size 0x4
+    struct Node *mNodes; // offset 0x8, size 0x4
+    class Object *mOwner; // offset 0xC, size 0x4
     enum ObjListMode mMode; // offset 0x10, size 0x4
 };
 struct CharGraphNode {
@@ -2864,15 +2878,15 @@ struct CharGraphNode {
 class NodeVector {
     // total size: 0x10
 public:
-    class CharClip * clip; // offset 0x0, size 0x4
+    class CharClip *clip; // offset 0x0, size 0x4
     int size; // offset 0x4, size 0x4
     struct CharGraphNode nodes[1]; // offset 0x8, size 0x8
 };
 class ObjPtr : public ObjRef {
     // total size: 0xC
 protected:
-    class Object * mOwner; // offset 0x4, size 0x4
-    class CharClip * mPtr; // offset 0x8, size 0x4
+    class Object *mOwner; // offset 0x4, size 0x4
+    class CharClip *mPtr; // offset 0x8, size 0x4
 };
 class FrameEvent {
     // total size: 0x8
@@ -2886,13 +2900,13 @@ class StlNodeAlloc {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    class FrameEvent * _M_data; // offset 0x0, size 0x4
+    class FrameEvent *_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    class FrameEvent * _M_start; // offset 0x0, size 0x4
-    class FrameEvent * _M_finish; // offset 0x4, size 0x4
+    class FrameEvent *_M_start; // offset 0x0, size 0x4
+    class FrameEvent *_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -2916,13 +2930,13 @@ class StlNodeAlloc {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    struct Bone * _M_data; // offset 0x0, size 0x4
+    struct Bone *_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    struct Bone * _M_start; // offset 0x0, size 0x4
-    struct Bone * _M_finish; // offset 0x4, size 0x4
+    struct Bone *_M_start; // offset 0x0, size 0x4
+    struct Bone *_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -2997,13 +3011,13 @@ class StlNodeAlloc {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    class CharClip * * _M_data; // offset 0x0, size 0x4
+    class CharClip **_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    class CharClip * * _M_start; // offset 0x0, size 0x4
-    class CharClip * * _M_finish; // offset 0x4, size 0x4
+    class CharClip **_M_start; // offset 0x0, size 0x4
+    class CharClip **_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -3038,8 +3052,8 @@ enum Type {
 class ObjPtr : public ObjRef {
     // total size: 0xC
 protected:
-    class Object * mOwner; // offset 0x4, size 0x4
-    class CharBone * mPtr; // offset 0x8, size 0x4
+    class Object *mOwner; // offset 0x4, size 0x4
+    class CharBone *mPtr; // offset 0x8, size 0x4
 };
 class CharBone : public RndTransformable {
     // total size: 0x110
@@ -3052,19 +3066,19 @@ protected:
 };
 struct Node {
     // total size: 0xC
-    class CharBone * object; // offset 0x0, size 0x4
-    struct Node * next; // offset 0x4, size 0x4
-    struct Node * prev; // offset 0x8, size 0x4
+    class CharBone *object; // offset 0x0, size 0x4
+    struct Node *next; // offset 0x4, size 0x4
+    struct Node *prev; // offset 0x8, size 0x4
 };
 class iterator {
     // total size: 0x4
-    struct Node * mNode; // offset 0x0, size 0x4
+    struct Node *mNode; // offset 0x0, size 0x4
 };
 class ObjPtrList : public ObjRef {
     // total size: 0x14
     int mSize; // offset 0x4, size 0x4
-    struct Node * mNodes; // offset 0x8, size 0x4
-    class Object * mOwner; // offset 0xC, size 0x4
+    struct Node *mNodes; // offset 0x8, size 0x4
+    class Object *mOwner; // offset 0xC, size 0x4
     enum ObjListMode mMode; // offset 0x10, size 0x4
 };
 class _List_node : public _List_node_base {
@@ -3106,8 +3120,8 @@ protected:
 class ObjPtr : public ObjRef {
     // total size: 0xC
 protected:
-    class Object * mOwner; // offset 0x4, size 0x4
-    class RndDir * mPtr; // offset 0x8, size 0x4
+    class Object *mOwner; // offset 0x4, size 0x4
+    class RndDir *mPtr; // offset 0x8, size 0x4
 };
 struct BoneXfm {
     // total size: 0x50
@@ -3120,13 +3134,13 @@ class StlNodeAlloc {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    struct BoneXfm * _M_data; // offset 0x0, size 0x4
+    struct BoneXfm *_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    struct BoneXfm * _M_start; // offset 0x0, size 0x4
-    struct BoneXfm * _M_finish; // offset 0x4, size 0x4
+    struct BoneXfm *_M_start; // offset 0x0, size 0x4
+    struct BoneXfm *_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -3134,7 +3148,7 @@ class vector : protected _Vector_base {
 };
 class ObjVector : public vector {
     // total size: 0x10
-    class Object * mOwner; // offset 0xC, size 0x4
+    class Object *mOwner; // offset 0xC, size 0x4
 };
 class CharClipSet : public ObjectDir, public RndDrawable, public RndAnimatable {
     // total size: 0x1F0
@@ -3175,11 +3189,11 @@ struct ShortQuat {
 class CharBones {
     // total size: 0x54
 public:
-    void * __vptr$; // offset 0x0, size 0x4
+    void *__vptr$; // offset 0x0, size 0x4
 protected:
     enum CompressionType mCompression; // offset 0x4, size 0x4
     class vector mBones; // offset 0x8, size 0xC
-    char * mStart; // offset 0x14, size 0x4
+    char *mStart; // offset 0x14, size 0x4
     union { // inferred
         union /* @class$33363App_cpp */ {
             int mCounts[7]; // offset 0x0, size 0x1C
@@ -3272,10 +3286,10 @@ protected:
 class CharClip : public virtual Object {
     // total size: 0x7C
 public:
-    void * __vptr$; // offset 0x4, size 0x4
+    void *__vptr$; // offset 0x4, size 0x4
 protected:
-    class NodeVector * mNodeStart; // offset 0x8, size 0x4
-    class NodeVector * mNodeEnd; // offset 0xC, size 0x4
+    class NodeVector *mNodeStart; // offset 0x8, size 0x4
+    class NodeVector *mNodeEnd; // offset 0xC, size 0x4
     float mStartFrame; // offset 0x10, size 0x4
     float mEndFrame; // offset 0x14, size 0x4
     float mFramesPerSec; // offset 0x18, size 0x4
@@ -3322,13 +3336,13 @@ class StlNodeAlloc {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    class ObjPtr * _M_data; // offset 0x0, size 0x4
+    class ObjPtr *_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    class ObjPtr * _M_start; // offset 0x0, size 0x4
-    class ObjPtr * _M_finish; // offset 0x4, size 0x4
+    class ObjPtr *_M_start; // offset 0x0, size 0x4
+    class ObjPtr *_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -3336,7 +3350,7 @@ class vector : protected _Vector_base {
 };
 class ObjVector : public vector {
     // total size: 0x10
-    class Object * mOwner; // offset 0xC, size 0x4
+    class Object *mOwner; // offset 0xC, size 0x4
 };
 struct MatOption {
     // total size: 0x34
@@ -3358,7 +3372,7 @@ class list : public _List_base {
 };
 class ObjList : public list {
     // total size: 0xC
-    class Object * mOwner; // offset 0x8, size 0x4
+    class Object *mOwner; // offset 0x8, size 0x4
 };
 struct ColorOption {
     // total size: 0x10
@@ -3371,13 +3385,13 @@ class StlNodeAlloc {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    struct ColorOption * _M_data; // offset 0x0, size 0x4
+    struct ColorOption *_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    struct ColorOption * _M_start; // offset 0x0, size 0x4
-    struct ColorOption * _M_finish; // offset 0x4, size 0x4
+    struct ColorOption *_M_start; // offset 0x0, size 0x4
+    struct ColorOption *_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -3385,7 +3399,7 @@ class vector : protected _Vector_base {
 };
 class ObjVector : public vector {
     // total size: 0x10
-    class Object * mOwner; // offset 0xC, size 0x4
+    class Object *mOwner; // offset 0xC, size 0x4
 };
 class OutfitConfig : public RndPollable {
     // total size: 0x44
@@ -3394,19 +3408,19 @@ class OutfitConfig : public RndPollable {
 class CompositeCharacter : public Character {
     // total size: 0x460
     class ObjPtr mOtherDude; // offset 0x264, size 0xC
-    class RndOverlay * mOverlay; // offset 0x270, size 0x4
+    class RndOverlay *mOverlay; // offset 0x270, size 0x4
     int mPlayFlags; // offset 0x274, size 0x4
     unsigned char mHandsActive; // offset 0x278, size 0x1
     unsigned char mHandsEnabled; // offset 0x279, size 0x1
     unsigned char mFrozen; // offset 0x27A, size 0x1
-    class CharDriver * mFaceDriver; // offset 0x27C, size 0x4
-    class CharDriver * mAddDriver; // offset 0x280, size 0x4
-    class CharDriver * mActiveDriver; // offset 0x284, size 0x4
-    class OutfitLoader * mOutfitLoader; // offset 0x288, size 0x4
+    class CharDriver *mFaceDriver; // offset 0x27C, size 0x4
+    class CharDriver *mAddDriver; // offset 0x280, size 0x4
+    class CharDriver *mActiveDriver; // offset 0x284, size 0x4
+    class OutfitLoader *mOutfitLoader; // offset 0x288, size 0x4
     char mGroupName[64]; // offset 0x28C, size 0x40
     char mGroupOverride[64]; // offset 0x2CC, size 0x40
     char mFaceGroupName[64]; // offset 0x30C, size 0x40
-    class Waypoint * mWaypoint; // offset 0x34C, size 0x4
+    class Waypoint *mWaypoint; // offset 0x34C, size 0x4
     unsigned char mForceVertical; // offset 0x350, size 0x1
     enum ClipMode mClipMode; // offset 0x354, size 0x4
     class vector mDirectedCuts; // offset 0x358, size 0xC
@@ -3425,7 +3439,7 @@ class CompositeCharacter : public Character {
     unsigned char mDeformDirty; // offset 0x3DD, size 0x1
     class Symbol mTattooPrefab; // offset 0x3E0, size 0x4
     class Symbol mPrefabName; // offset 0x3E4, size 0x4
-    class CharDesc * mPrefab; // offset 0x3E8, size 0x4
+    class CharDesc *mPrefab; // offset 0x3E8, size 0x4
     unsigned char mRedrawPrefab; // offset 0x3EC, size 0x1
     unsigned char mForcePoll; // offset 0x3ED, size 0x1
     class ObjPtr mSkinShader; // offset 0x3F0, size 0xC
@@ -3439,9 +3453,9 @@ class CompositeCharacter : public Character {
 class CharDesc : public virtual Object {
     // total size: 0x4C
 public:
-    void * __vptr$; // offset 0x4, size 0x4
+    void *__vptr$; // offset 0x4, size 0x4
 protected:
-    class DataArray * mCharData; // offset 0x8, size 0x4
+    class DataArray *mCharData; // offset 0x8, size 0x4
     class HxGuid mGuid; // offset 0xC, size 0x10
 private:
     int mRefs; // offset 0x1C, size 0x4
@@ -3481,7 +3495,7 @@ private:
     int mUserNum; // offset 0x34, size 0x4
     unsigned int mMachineID; // offset 0x38, size 0x4
     unsigned char mReady; // offset 0x3C, size 0x1
-    class OnlineID * mOnlineID; // offset 0x40, size 0x4
+    class OnlineID *mOnlineID; // offset 0x40, size 0x4
     unsigned char mHasOnlineID; // offset 0x44, size 0x1
 };
 class StlNodeAlloc {
@@ -3490,13 +3504,13 @@ class StlNodeAlloc {
 class _STLP_alloc_proxy : public StlNodeAlloc {
     // total size: 0x4
 public:
-    class BandData * * _M_data; // offset 0x0, size 0x4
+    class BandData **_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    class BandData * * _M_start; // offset 0x0, size 0x4
-    class BandData * * _M_finish; // offset 0x4, size 0x4
+    class BandData **_M_start; // offset 0x0, size 0x4
+    class BandData **_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -3505,7 +3519,7 @@ class vector : protected _Vector_base {
 class Profile : public virtual MsgSource {
     // total size: 0x390
 public:
-    void * __vptr$; // offset 0x4, size 0x4
+    void *__vptr$; // offset 0x4, size 0x4
 private:
     enum ProfileSaveState mState; // offset 0x8, size 0x4
     unsigned char mIsActive; // offset 0xC, size 0x1
@@ -3515,22 +3529,22 @@ private:
     class vector mBands; // offset 0x20, size 0xC
     class vector mRemoteBands; // offset 0x2C, size 0xC
     class vector mLessonsLearned; // offset 0x38, size 0xC
-    class SoloSongStatusMgr * mSoloSongs; // offset 0x44, size 0x4
+    class SoloSongStatusMgr *mSoloSongs; // offset 0x44, size 0x4
     class vector mBeatsLearned; // offset 0x48, size 0xC
     struct BotbNewsCreds mBotbNewsCreds[16]; // offset 0x54, size 0x240
     class vector mUnlockedSongs; // offset 0x294, size 0xC
     class set mUnlockedModifiers; // offset 0x2A0, size 0x18
     class vector mChallenges[4]; // offset 0x2B8, size 0x30
-    class PendingBattleScore * mPendingBattleScore; // offset 0x2E8, size 0x4
-    class HighScoreSongStatusMgr * mHighScores; // offset 0x2EC, size 0x4
-    class OnlineID * mComebackTarget; // offset 0x2F0, size 0x4
+    class PendingBattleScore *mPendingBattleScore; // offset 0x2E8, size 0x4
+    class HighScoreSongStatusMgr *mHighScores; // offset 0x2EC, size 0x4
+    class OnlineID *mComebackTarget; // offset 0x2F0, size 0x4
     class GameplayOptions mGameplayOptions; // offset 0x2F4, size 0x48
     int mUploadFriendsToken; // offset 0x33C, size 0x4
     unsigned char mHasCheated; // offset 0x340, size 0x1
 };
 class DataArray {
     // total size: 0x10
-    class DataNode * mNodes; // offset 0x0, size 0x4
+    class DataNode *mNodes; // offset 0x0, size 0x4
     class Symbol mFile; // offset 0x4, size 0x4
     signed short mSize; // offset 0x8, size 0x2
     signed short mRefs; // offset 0xA, size 0x2
@@ -3538,38 +3552,38 @@ class DataArray {
     signed short mDeprecated; // offset 0xE, size 0x2
 };
 union /* @class$5318App_cpp */ {
-    const char * symbol; // offset 0x0, size 0x4
+    const char *symbol; // offset 0x0, size 0x4
     int integer; // offset 0x0, size 0x4
     float real; // offset 0x0, size 0x4
-    class DataArray * array; // offset 0x0, size 0x4
-    class DataNode * var; // offset 0x0, size 0x4
-    class DataNode (* func)(class DataArray *); // offset 0x0, size 0x4
-    class Object * object; // offset 0x0, size 0x4
+    class DataArray *array; // offset 0x0, size 0x4
+    class DataNode *var; // offset 0x0, size 0x4
+    class DataNode (*func)(class DataArray *); // offset 0x0, size 0x4
+    class Object *object; // offset 0x0, size 0x4
 };
 class DataArrayPtr {
     // total size: 0x8
 public:
-    void * __vptr$; // offset 0x0, size 0x4
+    void *__vptr$; // offset 0x0, size 0x4
 private:
-    class DataArray * mData; // offset 0x4, size 0x4
+    class DataArray *mData; // offset 0x4, size 0x4
 };
 class DataNode {
     // total size: 0x8
     union /* @class$5318App_cpp */ {
-        const char * symbol; // offset 0x0, size 0x4
+        const char *symbol; // offset 0x0, size 0x4
         int integer; // offset 0x0, size 0x4
         float real; // offset 0x0, size 0x4
-        class DataArray * array; // offset 0x0, size 0x4
-        class DataNode * var; // offset 0x0, size 0x4
-        class DataNode (* func)(class DataArray *); // offset 0x0, size 0x4
-        class Object * object; // offset 0x0, size 0x4
+        class DataArray *array; // offset 0x0, size 0x4
+        class DataNode *var; // offset 0x0, size 0x4
+        class DataNode (*func)(class DataArray *); // offset 0x0, size 0x4
+        class Object *object; // offset 0x0, size 0x4
     } mValue; // offset 0x0, size 0x4
     enum DataType mType; // offset 0x4, size 0x4
 };
 class ObjRef {
     // total size: 0x4
 public:
-    void * __vptr$; // offset 0x0, size 0x4
+    void *__vptr$; // offset 0x0, size 0x4
 };
 struct {
     // total size: 0x8
@@ -3618,12 +3632,12 @@ struct {
 } __RTTI__10TextStream; // size: 0x8, address: 0x8085D358
 struct Entry {
     // total size: 0x8
-    const char * name; // offset 0x0, size 0x4
-    class Object * obj; // offset 0x4, size 0x4
+    const char *name; // offset 0x0, size 0x4
+    class Object *obj; // offset 0x4, size 0x4
 };
 class KeylessHash {
     // total size: 0x20
-    struct Entry * mEntries; // offset 0x0, size 0x4
+    struct Entry *mEntries; // offset 0x0, size 0x4
     int mSize; // offset 0x4, size 0x4
     unsigned char mOwnEntries; // offset 0x8, size 0x1
     int mNumEntries; // offset 0xC, size 0x4
@@ -3655,7 +3669,7 @@ class SongPos {
 };
 class TaskMgr : public Object {
     // total size: 0x88
-    class TaskTimeline * mTimelines; // offset 0x28, size 0x4
+    class TaskTimeline *mTimelines; // offset 0x28, size 0x4
     class SongPos mSongPos; // offset 0x2C, size 0x14
     unsigned char mAutoSecondsBeats; // offset 0x40, size 0x1
     class Timer mTime; // offset 0x48, size 0x38
@@ -3690,29 +3704,29 @@ class NetSync : public Object {
     unsigned char mTransitionSwitch; // offset 0x28, size 0x1
     unsigned char mSelectSwitch; // offset 0x29, size 0x1
     enum WaitType mInTransition[4]; // offset 0x2C, size 0x10
-    class UIScreen * mDestinationScreen; // offset 0x3C, size 0x4
+    class UIScreen *mDestinationScreen; // offset 0x3C, size 0x4
     int mDestinationDepth; // offset 0x40, size 0x4
     unsigned char mUIDisabled; // offset 0x44, size 0x1
     unsigned char mIsForcedTransitionActive; // offset 0x45, size 0x1
     unsigned char mSessionBusy; // offset 0x46, size 0x1
-    class LockStepMgr * mLockStepMgr; // offset 0x48, size 0x4
+    class LockStepMgr *mLockStepMgr; // offset 0x48, size 0x4
 };
 class ObjDirPtr : public ObjRef {
     // total size: 0xC
 protected:
-    class CompositeCharacter * mDir; // offset 0x4, size 0x4
-    class DirLoader * mLoader; // offset 0x8, size 0x4
+    class CompositeCharacter *mDir; // offset 0x4, size 0x4
+    class DirLoader *mLoader; // offset 0x8, size 0x4
 };
 class ObjDirPtr : public ObjRef {
     // total size: 0xC
 protected:
-    class CharClipSet * mDir; // offset 0x4, size 0x4
-    class DirLoader * mLoader; // offset 0x8, size 0x4
+    class CharClipSet *mDir; // offset 0x4, size 0x4
+    class DirLoader *mLoader; // offset 0x8, size 0x4
 };
 struct CharEntry {
     // total size: 0x50
     enum ControllerType mControllerType; // offset 0x0, size 0x4
-    const class CharData * mCharData; // offset 0x4, size 0x4
+    const class CharData *mCharData; // offset 0x4, size 0x4
     class ObjDirPtr mChar; // offset 0x8, size 0xC
     class String mReplaceName; // offset 0x14, size 0xC
     class String mWorldName; // offset 0x20, size 0xC
@@ -3741,21 +3755,21 @@ protected:
     enum TrackType mTrackType; // offset 0x4C, size 0x4
     enum ControllerType mControllerType; // offset 0x50, size 0x4
     unsigned char mTrackSelected; // offset 0x54, size 0x1
-    class CharData * mChar; // offset 0x58, size 0x4
+    class CharData *mChar; // offset 0x58, size 0x4
     class GameplayOptions mGameplayOptions; // offset 0x5C, size 0x48
     enum NetUIState mNetUIState; // offset 0xA4, size 0x4
     unsigned char mAutoplay; // offset 0xA8, size 0x1
     class Symbol mPreviousAward; // offset 0xAC, size 0x4
-    class Track * mTrack; // offset 0xB0, size 0x4
-    class Player * mPlayer; // offset 0xB4, size 0x4
+    class Track *mTrack; // offset 0xB0, size 0x4
+    class Player *mPlayer; // offset 0xB4, size 0x4
     unsigned char mIsWiiRemoteController; // offset 0xB8, size 0x1
     unsigned char mJustDisconnected; // offset 0xB9, size 0x1
 };
 class CharCache : public Object {
     // total size: 0xB8
 protected:
-    struct CharEntry * mEntries[4]; // offset 0x28, size 0x10
-    class FileCache * mCache; // offset 0x38, size 0x4
+    struct CharEntry *mEntries[4]; // offset 0x28, size 0x10
+    class FileCache *mCache; // offset 0x38, size 0x4
     enum Configuration mConfiguration; // offset 0x3C, size 0x4
     class list mCompressTextures; // offset 0x40, size 0x8
     int mCompressPlayer; // offset 0x48, size 0x4
@@ -3778,7 +3792,7 @@ class WiiNetInit {
     unsigned char mThreadActive; // offset 0x1004, size 0x1
     struct OSThread mThread; // offset 0x1008, size 0x318
     unsigned char mThreadWaiting; // offset 0x1320, size 0x1
-    unsigned short * mProfaneWord[1]; // offset 0x1324, size 0x4
+    unsigned short *mProfaneWord[1]; // offset 0x1324, size 0x4
     unsigned short mProfaneChars[501]; // offset 0x1328, size 0x3EA
     char mProfaneResults[10]; // offset 0x1712, size 0xA
     int mProfaneBadNum; // offset 0x171C, size 0x4
@@ -3790,7 +3804,7 @@ class RootObject {
 };
 class MutexPrimitive : public RootObject {
     // total size: 0x4
-    void * m_hMutex; // offset 0x0, size 0x4
+    void *m_hMutex; // offset 0x0, size 0x4
 };
 class LockChecker : public RootObject {
     // total size: 0x10
@@ -3807,18 +3821,18 @@ class CriticalSection : public RootObject {
 class RefCountedObject : public RootObject {
     // total size: 0x8
 public:
-    void * __vptr$; // offset 0x0, size 0x4
+    void *__vptr$; // offset 0x0, size 0x4
 private:
     unsigned short m_ui16RefCount; // offset 0x4, size 0x2
 };
 class String : public RootObject {
     // total size: 0x4
-    char * m_szContent; // offset 0x0, size 0x4
+    char *m_szContent; // offset 0x0, size 0x4
 };
 class Buffer : public RefCountedObject {
     // total size: 0x14
 protected:
-    unsigned char * m_pData; // offset 0x8, size 0x4
+    unsigned char *m_pData; // offset 0x8, size 0x4
     unsigned int m_uiContentSize; // offset 0xC, size 0x4
     unsigned int m_uiBufSize; // offset 0x10, size 0x4
 };
@@ -3830,20 +3844,20 @@ class ByteStream : public RootObject {
     // total size: 0xC
 protected:
     unsigned char m_bErrorHasOccured; // offset 0x0, size 0x1
-    class Buffer * m_pBuffer; // offset 0x4, size 0x4
+    class Buffer *m_pBuffer; // offset 0x4, size 0x4
     unsigned int m_uiPosition; // offset 0x8, size 0x4
 };
 class qResult {
     // total size: 0xC
     int m_iReturnCode; // offset 0x0, size 0x4
-    const char * m_cszFilename; // offset 0x4, size 0x4
+    const char *m_cszFilename; // offset 0x4, size 0x4
     int m_iLineNumber; // offset 0x8, size 0x4
 };
 union UserContextStorage {
     unsigned int m_uiValue; // offset 0x0, size 0x4
     float m_dValue; // offset 0x0, size 0x4
     unsigned char m_bValue; // offset 0x0, size 0x1
-    void * m_pPointer; // offset 0x0, size 0x4
+    void *m_pPointer; // offset 0x0, size 0x4
 };
 class UserContext : public RootObject {
     // total size: 0x4
@@ -3863,21 +3877,21 @@ enum Type {
 class PseudoGlobalVariableList : public RootObject {
     // total size: 0x4
 public:
-    void * __vptr$; // offset 0x0, size 0x4
+    void *__vptr$; // offset 0x0, size 0x4
 };
 class PseudoGlobalVariableRoot : public RootObject {
     // total size: 0x8
 public:
-    void * __vptr$; // offset 0x0, size 0x4
+    void *__vptr$; // offset 0x0, size 0x4
 protected:
-    class PseudoGlobalVariableRoot * m_pNext; // offset 0x4, size 0x4
+    class PseudoGlobalVariableRoot *m_pNext; // offset 0x4, size 0x4
 };
 class PluginObject : public RootObject {
     // total size: 0x8
 public:
-    void * __vptr$; // offset 0x0, size 0x4
+    void *__vptr$; // offset 0x0, size 0x4
 protected:
-    class Plugin * m_pPlugin; // offset 0x4, size 0x4
+    class Plugin *m_pPlugin; // offset 0x4, size 0x4
 };
 class qProtectedList {
     // total size: 0x0
@@ -3909,13 +3923,13 @@ class MemAllocator {
 class _STLP_alloc_proxy : public MemAllocator {
     // total size: 0x4
 public:
-    unsigned char * _M_data; // offset 0x0, size 0x4
+    unsigned char *_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    unsigned char * _M_start; // offset 0x0, size 0x4
-    unsigned char * _M_finish; // offset 0x4, size 0x4
+    unsigned char *_M_start; // offset 0x0, size 0x4
+    unsigned char *_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -3938,7 +3952,7 @@ protected:
 class StreamBundling : public RootObject {
     // total size: 0x18
 public:
-    void * __vptr$; // offset 0x0, size 0x4
+    void *__vptr$; // offset 0x0, size 0x4
 private:
     unsigned char m_bEnabled; // offset 0x4, size 0x1
     int m_tiAutoFlushPeriod; // offset 0x8, size 0x4
@@ -3947,8 +3961,8 @@ private:
 class StreamSettings : public RootObject {
     // total size: 0x50
     unsigned char m_byChecksumOffset; // offset 0x0, size 0x1
-    class CompressionAlgorithm * m_pCompressionAlgorithm; // offset 0x4, size 0x4
-    class EncryptionAlgorithm * m_pEncryptionAlgorithm; // offset 0x8, size 0x4
+    class CompressionAlgorithm *m_pCompressionAlgorithm; // offset 0x4, size 0x4
+    class EncryptionAlgorithm *m_pEncryptionAlgorithm; // offset 0x8, size 0x4
     class StreamBundling m_oStreamBundling; // offset 0x10, size 0x18
     unsigned int m_uiMaxRetransmission; // offset 0x28, size 0x4
     unsigned int m_uiKeepAliveTimeout; // offset 0x2C, size 0x4
@@ -3965,14 +3979,14 @@ class StreamSettings : public RootObject {
 };
 class PseudoGlobalVariable : public PseudoGlobalVariableRoot {
     // total size: 0xB0
-    class StreamSettings * m_pValueInContextList; // offset 0x8, size 0x4
+    class StreamSettings *m_pValueInContextList; // offset 0x8, size 0x4
     class StreamSettings m_oValueInDefaultContext; // offset 0x10, size 0x50
     class StreamSettings m_oDefaultValue; // offset 0x60, size 0x50
 };
 class Stream : public RootObject {
     // total size: 0x8
 public:
-    void * __vptr$; // offset 0x0, size 0x4
+    void *__vptr$; // offset 0x0, size 0x4
 private:
     enum Type m_oStreamType; // offset 0x4, size 0x4
 };
@@ -4037,7 +4051,7 @@ protected:
 };
 struct _Rb_tree_base_iterator {
     // total size: 0x4
-    struct _Rb_tree_node_base * _M_node; // offset 0x0, size 0x4
+    struct _Rb_tree_node_base *_M_node; // offset 0x0, size 0x4
 };
 class _Rb_tree : public _Rb_tree_base {
     // total size: 0x18
@@ -4055,12 +4069,12 @@ class qMap : public map, public RootObject {
 };
 class StationURL : public RootObject {
     // total size: 0x58
-    class InetAddress * m_pAddr; // offset 0x0, size 0x4
+    class InetAddress *m_pAddr; // offset 0x0, size 0x4
     enum _URLType m_urlType; // offset 0x4, size 0x4
     class qMap m_IntMap; // offset 0x8, size 0x18
     class qMap m_StrMap; // offset 0x20, size 0x18
     class qMap m_UserMap; // offset 0x38, size 0x18
-    char * m_szURL; // offset 0x50, size 0x4
+    char *m_szURL; // offset 0x50, size 0x4
     unsigned char m_bDataValid; // offset 0x54, size 0x1
     unsigned char m_bStrValid; // offset 0x55, size 0x1
     unsigned char m_bURLValid; // offset 0x56, size 0x1
@@ -4068,13 +4082,13 @@ class StationURL : public RootObject {
 class TransportEventHandler : public RootObject {
     // total size: 0x4
 public:
-    void * __vptr$; // offset 0x0, size 0x4
+    void *__vptr$; // offset 0x0, size 0x4
 };
 class Links {
     // total size: 0x8
 public:
-    class PerfCounter * m_pNext; // offset 0x0, size 0x4
-    class PerfCounter * m_pPrevious; // offset 0x4, size 0x4
+    class PerfCounter *m_pNext; // offset 0x0, size 0x4
+    class PerfCounter *m_pPrevious; // offset 0x4, size 0x4
 };
 class PerfCounter : public RootObject {
     // total size: 0x60
@@ -4102,7 +4116,7 @@ class TransportPerfCounters : public RootObject {
 class EmulationDevice : public RootObject {
     // total size: 0x1C
 public:
-    void * __vptr$; // offset 0x0, size 0x4
+    void *__vptr$; // offset 0x0, size 0x4
 protected:
     unsigned char m_bEnabled; // offset 0x4, size 0x1
     unsigned int m_uiProtocolHeaderSize; // offset 0x8, size 0x4
@@ -4126,13 +4140,13 @@ class MemAllocator {
 class _STLP_alloc_proxy : public MemAllocator {
     // total size: 0x4
 public:
-    struct pair * _M_data; // offset 0x0, size 0x4
+    struct pair *_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    struct pair * _M_start; // offset 0x0, size 0x4
-    struct pair * _M_finish; // offset 0x4, size 0x4
+    struct pair *_M_start; // offset 0x0, size 0x4
+    struct pair *_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -4148,7 +4162,7 @@ class qSortedVector : public RootObject {
 class TransportStreamManager : public RootObject {
     // total size: 0x10
     class qSortedVector m_mapVPort; // offset 0x0, size 0xC
-    class RootTransport * m_pTransport; // offset 0xC, size 0x4
+    class RootTransport *m_pTransport; // offset 0xC, size 0x4
 };
 class VirtualNATDevice {
     // total size: 0x0
@@ -4175,7 +4189,7 @@ class qList : public list, public RootObject {
 class RootTransport : public RootObject {
     // total size: 0x4E8
 public:
-    void * __vptr$; // offset 0x0, size 0x4
+    void *__vptr$; // offset 0x0, size 0x4
 protected:
     unsigned int m_uiMTU; // offset 0x4, size 0x4
     unsigned int m_uiTimeSlice; // offset 0x8, size 0x4
@@ -4184,30 +4198,30 @@ protected:
     class OutputEmulationDevice m_oOutputEmulationDevice; // offset 0x490, size 0x1C
     class InputEmulationDevice m_oInputEmulationDevice; // offset 0x4AC, size 0x1C
     class TransportStreamManager m_oTransportStreamManager; // offset 0x4C8, size 0x10
-    class VirtualNATDevice * m_pVNATDevice; // offset 0x4D8, size 0x4
+    class VirtualNATDevice *m_pVNATDevice; // offset 0x4D8, size 0x4
     unsigned short m_uiPreferredPortNumber; // offset 0x4DC, size 0x2
     class qList m_lstPacketRecognizers; // offset 0x4E0, size 0x8
 };
 class ConnectionOrientedStream : public Stream {
     // total size: 0x14
 protected:
-    class TransportEventHandler * m_pEventHandler; // offset 0x8, size 0x4
-    class RootTransport * m_pUDPTransport; // offset 0xC, size 0x4
+    class TransportEventHandler *m_pEventHandler; // offset 0x8, size 0x4
+    class RootTransport *m_pUDPTransport; // offset 0xC, size 0x4
     unsigned char m_idStream; // offset 0x10, size 0x1
 };
 class EndPointEventHandler : public RootObject {
     // total size: 0x4
 public:
-    void * __vptr$; // offset 0x0, size 0x4
+    void *__vptr$; // offset 0x0, size 0x4
 };
 class EndPoint : public RootObject {
     // total size: 0x74
 public:
-    void * __vptr$; // offset 0x0, size 0x4
+    void *__vptr$; // offset 0x0, size 0x4
 protected:
-    class ConnectionOrientedStream * m_pStream; // offset 0x4, size 0x4
+    class ConnectionOrientedStream *m_pStream; // offset 0x4, size 0x4
     class StationURL m_oStationURL; // offset 0x8, size 0x58
-    class EndPointEventHandler * m_pEventHandler; // offset 0x60, size 0x4
+    class EndPointEventHandler *m_pEventHandler; // offset 0x60, size 0x4
     class UserContext m_oContext; // offset 0x64, size 0x4
     unsigned int m_idConnection; // offset 0x68, size 0x4
     unsigned int m_idPrincipal; // offset 0x6C, size 0x4
@@ -4220,34 +4234,34 @@ class Message : public ByteStream {
     unsigned int m_pidSource; // offset 0x20, size 0x4
     unsigned int m_cidSource; // offset 0x24, size 0x4
     class UserContext m_oContext; // offset 0x28, size 0x4
-    class EndPoint * m_pSourceEndPoint; // offset 0x2C, size 0x4
+    class EndPoint *m_pSourceEndPoint; // offset 0x2C, size 0x4
 };
 class _DDL_Data : public RootObject {
     // total size: 0x4
 public:
-    void * __vptr$; // offset 0x0, size 0x4
+    void *__vptr$; // offset 0x0, size 0x4
 };
 class Data : public _DDL_Data {
     // total size: 0x4
 };
 class Holder {
     // total size: 0x4
-    class Data * m_ptr; // offset 0x0, size 0x4
+    class Data *m_ptr; // offset 0x0, size 0x4
 };
 class AnyObjectAdapter {
     // total size: 0x4
 public:
-    void * __vptr$; // offset 0x0, size 0x4
+    void *__vptr$; // offset 0x0, size 0x4
 };
 class AnyObjectHolder : public Holder {
     // total size: 0x8
 public:
-    void * __vptr$; // offset 0x4, size 0x4
+    void *__vptr$; // offset 0x4, size 0x4
 };
 class MessagingNotificationHandler : public RootObject {
     // total size: 0x4
 public:
-    void * __vptr$; // offset 0x0, size 0x4
+    void *__vptr$; // offset 0x0, size 0x4
 };
 class WiiMessagingNotificationHandler : public MessagingNotificationHandler {
     // total size: 0x8
@@ -4286,13 +4300,13 @@ class MemAllocator {
 class _STLP_alloc_proxy : public MemAllocator {
     // total size: 0x4
 public:
-    class UserContext * _M_data; // offset 0x0, size 0x4
+    class UserContext *_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    class UserContext * _M_start; // offset 0x0, size 0x4
-    class UserContext * _M_finish; // offset 0x4, size 0x4
+    class UserContext *_M_start; // offset 0x0, size 0x4
+    class UserContext *_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -4311,9 +4325,9 @@ private:
     class qVector m_vUserContext; // offset 0x18, size 0xC
     class qResult m_rCallOutcome; // offset 0x24, size 0xC
     unsigned int m_uiID; // offset 0x30, size 0x4
-    void * m_pDependentConnection; // offset 0x34, size 0x4
+    void *m_pDependentConnection; // offset 0x34, size 0x4
     unsigned int m_idConnection; // offset 0x38, size 0x4
-    class CallbackRoot * m_pCancellationCallback; // offset 0x3C, size 0x4
+    class CallbackRoot *m_pCancellationCallback; // offset 0x3C, size 0x4
     class Time m_tDeadline; // offset 0x40, size 0x8
 };
 class MemAllocator {
@@ -4322,13 +4336,13 @@ class MemAllocator {
 class _STLP_alloc_proxy : public MemAllocator {
     // total size: 0x4
 public:
-    void * _M_data; // offset 0x0, size 0x4
+    void *_M_data; // offset 0x0, size 0x4
 };
 class _Vector_base {
     // total size: 0xC
 protected:
-    void * _M_start; // offset 0x0, size 0x4
-    void * _M_finish; // offset 0x4, size 0x4
+    void *_M_start; // offset 0x0, size 0x4
+    void *_M_finish; // offset 0x4, size 0x4
     class _STLP_alloc_proxy _M_end_of_storage; // offset 0x8, size 0x4
 };
 class vector : protected _Vector_base {
@@ -4340,8 +4354,8 @@ class qVector : public vector, public RootObject {
 class ProtocolCallContext : public CallContext {
     // total size: 0x60
     class qVector m_vReturnValuePtr; // offset 0x48, size 0xC
-    unsigned char * m_pbResult; // offset 0x54, size 0x4
-    class qResult * m_pqResult; // offset 0x58, size 0x4
+    unsigned char *m_pbResult; // offset 0x54, size 0x4
+    class qResult *m_pqResult; // offset 0x58, size 0x4
 };
 class DateTime : public RootObject {
     // total size: 0x8
@@ -4364,7 +4378,7 @@ public:
 class _DDL_MessageRecipient : public RootObject {
     // total size: 0xC
 public:
-    void * __vptr$; // offset 0x0, size 0x4
+    void *__vptr$; // offset 0x0, size 0x4
     unsigned int m_idRecipient; // offset 0x4, size 0x4
     unsigned int m_uiRecipientType; // offset 0x8, size 0x4
 };
@@ -4456,24 +4470,24 @@ struct Vec2 {
 };
 struct MEMAllocatorFunc {
     // total size: 0x8
-    void * (* pfAlloc)(struct MEMAllocator *, unsigned long); // offset 0x0, size 0x4
-    void (* pfFree)(struct MEMAllocator *, void *); // offset 0x4, size 0x4
+    void *(*pfAlloc)(struct MEMAllocator *, unsigned long); // offset 0x0, size 0x4
+    void (*pfFree)(struct MEMAllocator *, void *); // offset 0x4, size 0x4
 };
 struct MEMAllocator {
     // total size: 0x10
-    const struct MEMAllocatorFunc * pFunc; // offset 0x0, size 0x4
-    void * pHeap; // offset 0x4, size 0x4
+    const struct MEMAllocatorFunc *pFunc; // offset 0x0, size 0x4
+    void *pHeap; // offset 0x4, size 0x4
     unsigned long heapParam1; // offset 0x8, size 0x4
     unsigned long heapParam2; // offset 0xC, size 0x4
 };
 struct HBMDataInfo {
     // total size: 0x40
-    void * layoutBuf; // offset 0x0, size 0x4
-    void * spkSeBuf; // offset 0x4, size 0x4
-    void * msgBuf; // offset 0x8, size 0x4
-    void * configBuf; // offset 0xC, size 0x4
-    void * mem; // offset 0x10, size 0x4
-    int (* sound_callback)(int, int); // offset 0x14, size 0x4
+    void *layoutBuf; // offset 0x0, size 0x4
+    void *spkSeBuf; // offset 0x4, size 0x4
+    void *msgBuf; // offset 0x8, size 0x4
+    void *configBuf; // offset 0xC, size 0x4
+    void *mem; // offset 0x10, size 0x4
+    int (*sound_callback)(int, int); // offset 0x14, size 0x4
     int backFlag; // offset 0x18, size 0x4
     int region; // offset 0x1C, size 0x4
     int cursor; // offset 0x20, size 0x4
@@ -4482,7 +4496,7 @@ struct HBMDataInfo {
     unsigned long memSize; // offset 0x2C, size 0x4
     float frameDelta; // offset 0x30, size 0x4
     struct Vec2 adjust; // offset 0x34, size 0x8
-    struct MEMAllocator * pAllocator; // offset 0x3C, size 0x4
+    struct MEMAllocator *pAllocator; // offset 0x3C, size 0x4
 };
 struct Vec {
     // total size: 0xC
@@ -4552,7 +4566,7 @@ struct KPADStatus {
 };
 struct HBMKPadData {
     // total size: 0x10
-    struct KPADStatus * kpad; // offset 0x0, size 0x4
+    struct KPADStatus *kpad; // offset 0x0, size 0x4
     struct Vec2 pos; // offset 0x4, size 0x8
     unsigned long use_devtype; // offset 0xC, size 0x4
 };
@@ -4579,7 +4593,7 @@ struct TPLHeader {
     unsigned short height; // offset 0x0, size 0x2
     unsigned short width; // offset 0x2, size 0x2
     unsigned long format; // offset 0x4, size 0x4
-    char * data; // offset 0x8, size 0x4
+    char *data; // offset 0x8, size 0x4
     enum _GXTexWrapMode wrapS; // offset 0xC, size 0x4
     enum _GXTexWrapMode wrapT; // offset 0x10, size 0x4
     enum _GXTexFilter minFilter; // offset 0x14, size 0x4
@@ -4602,18 +4616,18 @@ struct TPLClutHeader {
     unsigned char unpacked; // offset 0x2, size 0x1
     unsigned char pad8; // offset 0x3, size 0x1
     enum _GXTlutFmt format; // offset 0x4, size 0x4
-    char * data; // offset 0x8, size 0x4
+    char *data; // offset 0x8, size 0x4
 };
 struct TPLDescriptor {
     // total size: 0x8
-    struct TPLHeader * textureHeader; // offset 0x0, size 0x4
-    struct TPLClutHeader * CLUTHeader; // offset 0x4, size 0x4
+    struct TPLHeader *textureHeader; // offset 0x0, size 0x4
+    struct TPLClutHeader *CLUTHeader; // offset 0x4, size 0x4
 };
 struct TPLPalette {
     // total size: 0xC
     unsigned long versionNumber; // offset 0x0, size 0x4
     unsigned long numDescriptors; // offset 0x4, size 0x4
-    struct TPLDescriptor * descriptorArray; // offset 0x8, size 0x4
+    struct TPLDescriptor *descriptorArray; // offset 0x8, size 0x4
 };
 class HomeMenu {
     // total size: 0x21C4
@@ -4629,19 +4643,19 @@ class HomeMenu {
     unsigned char mBanIconActive; // offset 0x90, size 0x1
     signed char mBanIconMode; // offset 0x91, size 0x1
     unsigned long mBanIconTime; // offset 0x94, size 0x4
-    struct TPLPalette * mIconTpl; // offset 0x98, size 0x4
+    struct TPLPalette *mIconTpl; // offset 0x98, size 0x4
     unsigned char mBanIconAlpha; // offset 0x9C, size 0x1
-    unsigned char * mSoundBuf; // offset 0xA0, size 0x4
-    unsigned char * mSoundData; // offset 0xA4, size 0x4
+    unsigned char *mSoundBuf; // offset 0xA0, size 0x4
+    unsigned char *mSoundData; // offset 0xA4, size 0x4
     float mLastProjection[7]; // offset 0xA8, size 0x1C
     struct KPADStatus mHomeMenuPadStatus[4][16]; // offset 0xC4, size 0x2100
 };
 struct ECRating {
     // total size: 0x10
-    char * name; // offset 0x0, size 0x4
-    char * rating; // offset 0x4, size 0x4
+    char *name; // offset 0x0, size 0x4
+    char *rating; // offset 0x4, size 0x4
     long age; // offset 0x8, size 0x4
-    char * descriptors; // offset 0xC, size 0x4
+    char *descriptors; // offset 0xC, size 0x4
 };
 struct ECMoney {
     // total size: 0x40
@@ -4663,20 +4677,20 @@ struct ECLicensePricing {
 };
 struct ECNameValuePair {
     // total size: 0x8
-    char * name; // offset 0x0, size 0x4
-    char * value; // offset 0x4, size 0x4
+    char *name; // offset 0x0, size 0x4
+    char *value; // offset 0x4, size 0x4
 };
 struct ECContentCatalogInfo {
     // total size: 0x30
     unsigned long long titleId; // offset 0x0, size 0x8
-    struct ECRating * ratings; // offset 0x8, size 0x4
+    struct ECRating *ratings; // offset 0x8, size 0x4
     unsigned long nRatings; // offset 0xC, size 0x4
-    struct ECLicensePricing * licensePricings; // offset 0x10, size 0x4
+    struct ECLicensePricing *licensePricings; // offset 0x10, size 0x4
     unsigned long nLicensePricings; // offset 0x14, size 0x4
-    struct ECNameValuePair * attributes; // offset 0x18, size 0x4
+    struct ECNameValuePair *attributes; // offset 0x18, size 0x4
     unsigned long nAttributes; // offset 0x1C, size 0x4
     long isTitleIncluded; // offset 0x20, size 0x4
-    unsigned short * indexes; // offset 0x24, size 0x4
+    unsigned short *indexes; // offset 0x24, size 0x4
     unsigned long nIndexes; // offset 0x28, size 0x4
 };
 struct ECContentInfo {
@@ -4700,25 +4714,25 @@ struct DVDDiskID {
 };
 struct DVDCommandBlock {
     // total size: 0x30
-    struct DVDCommandBlock * next; // offset 0x0, size 0x4
-    struct DVDCommandBlock * prev; // offset 0x4, size 0x4
+    struct DVDCommandBlock *next; // offset 0x0, size 0x4
+    struct DVDCommandBlock *prev; // offset 0x4, size 0x4
     unsigned long command; // offset 0x8, size 0x4
     long state; // offset 0xC, size 0x4
     unsigned long offset; // offset 0x10, size 0x4
     unsigned long length; // offset 0x14, size 0x4
-    void * addr; // offset 0x18, size 0x4
+    void *addr; // offset 0x18, size 0x4
     unsigned long currTransferSize; // offset 0x1C, size 0x4
     unsigned long transferredSize; // offset 0x20, size 0x4
-    struct DVDDiskID * id; // offset 0x24, size 0x4
-    void (* callback)(long, struct DVDCommandBlock *); // offset 0x28, size 0x4
-    void * userData; // offset 0x2C, size 0x4
+    struct DVDDiskID *id; // offset 0x24, size 0x4
+    void (*callback)(long, struct DVDCommandBlock *); // offset 0x28, size 0x4
+    void *userData; // offset 0x2C, size 0x4
 };
 struct DVDFileInfo {
     // total size: 0x3C
     struct DVDCommandBlock cb; // offset 0x0, size 0x30
     unsigned long startAddr; // offset 0x30, size 0x4
     unsigned long length; // offset 0x34, size 0x4
-    void (* callback)(long, struct DVDFileInfo *); // offset 0x38, size 0x4
+    void (*callback)(long, struct DVDFileInfo *); // offset 0x38, size 0x4
 };
 class DiscErrorMgrWii {
     // total size: 0xC
@@ -4726,61 +4740,61 @@ class DiscErrorMgrWii {
     unsigned char mRetryError; // offset 0x1, size 0x1
     unsigned char mMovieReadError; // offset 0x2, size 0x1
     unsigned char mActive; // offset 0x3, size 0x1
-    struct TPLPalette * mEjectErrorTpl; // offset 0x4, size 0x4
-    struct TPLPalette * mRetryErrorTpl; // offset 0x8, size 0x4
+    struct TPLPalette *mEjectErrorTpl; // offset 0x4, size 0x4
+    struct TPLPalette *mRetryErrorTpl; // offset 0x8, size 0x4
 };
 class PlatformMgr : public MsgSource {
     // total size: 0x21B0
     int mSigninMask; // offset 0x1C, size 0x4
     int mSigninChangeMask; // offset 0x20, size 0x4
     int mSigninSameGuest; // offset 0x24, size 0x4
-    void * mListener; // offset 0x28, size 0x4
-    void * mFriendsEnum; // offset 0x2C, size 0x4
-    void * mFriendsBuffer; // offset 0x30, size 0x4
-    void * mFriendsAsync; // offset 0x34, size 0x4
-    class Object * mFriendsCallback; // offset 0x38, size 0x4
-    class vector * mFriendsList; // offset 0x3C, size 0x4
+    void *mListener; // offset 0x28, size 0x4
+    void *mFriendsEnum; // offset 0x2C, size 0x4
+    void *mFriendsBuffer; // offset 0x30, size 0x4
+    void *mFriendsAsync; // offset 0x34, size 0x4
+    class Object *mFriendsCallback; // offset 0x38, size 0x4
+    class vector *mFriendsList; // offset 0x3C, size 0x4
     unsigned char mXboxGuideShowing; // offset 0x40, size 0x1
     unsigned char mConfirmCancelSwapped; // offset 0x41, size 0x1
     unsigned char mConnected; // offset 0x42, size 0x1
-    class UIPanel * mOverflowDialog; // offset 0x44, size 0x4
+    class UIPanel *mOverflowDialog; // offset 0x44, size 0x4
     unsigned char mDisabling; // offset 0x48, size 0x1
     unsigned char mJoypadOverflow; // offset 0x49, size 0x1
     unsigned char mMediaInserted; // offset 0x4A, size 0x1
-    void * mSDBuffer; // offset 0x4C, size 0x4
+    void *mSDBuffer; // offset 0x4C, size 0x4
     unsigned char mAllowAddFriend; // offset 0x50, size 0x1
     unsigned char mIsConnecting; // offset 0x51, size 0x1
     int mLastNetResult; // offset 0x54, size 0x4
-    class WiiNetInit * mWiiNetInit; // offset 0x58, size 0x4
+    class WiiNetInit *mWiiNetInit; // offset 0x58, size 0x4
     unsigned char mNetCapable; // offset 0x5C, size 0x1
     class WiiMessagingNotificationHandler mMessagingHandler; // offset 0x60, size 0x8
     unsigned char mMessagingEnum; // offset 0x68, size 0x1
-    class ProtocolCallContext * mMessagingContext; // offset 0x6C, size 0x4
-    class Object * mMessagingCallback; // offset 0x70, size 0x4
-    class vector * mMessagingList; // offset 0x74, size 0x4
+    class ProtocolCallContext *mMessagingContext; // offset 0x6C, size 0x4
+    class Object *mMessagingCallback; // offset 0x70, size 0x4
+    class vector *mMessagingList; // offset 0x74, size 0x4
     class qList mUserMessages; // offset 0x78, size 0x8
     class qList mMessages; // offset 0x80, size 0x8
-    class ProtocolCallContext * mFriendsContext; // offset 0x88, size 0x4
+    class ProtocolCallContext *mFriendsContext; // offset 0x88, size 0x4
     class qList mUserFriends; // offset 0x8C, size 0x8
     enum FriendType mFriendTypeRequested; // offset 0x94, size 0x4
-    class ProtocolCallContext * mDummyContext; // offset 0x98, size 0x4
-    class HomeMenu * mHomeMenuWii; // offset 0x9C, size 0x4
+    class ProtocolCallContext *mDummyContext; // offset 0x98, size 0x4
+    class HomeMenu *mHomeMenuWii; // offset 0x9C, size 0x4
     unsigned char bCommerceOnline; // offset 0xA0, size 0x1
     long mCommerceAsyncOpId; // offset 0xA4, size 0x4
-    char * mCommerceAsyncName; // offset 0xA8, size 0x4
+    char *mCommerceAsyncName; // offset 0xA8, size 0x4
     class Timer mCommerceTimeout; // offset 0xB0, size 0x38
     long opId; // offset 0xE8, size 0x4
     unsigned long long mTitleId; // offset 0xF0, size 0x8
-    struct ECContentCatalogInfo * pContentSet; // offset 0xF8, size 0x4
+    struct ECContentCatalogInfo *pContentSet; // offset 0xF8, size 0x4
     long price; // offset 0xFC, size 0x4
-    char * attributes[6]; // offset 0x100, size 0x18
+    char *attributes[6]; // offset 0x100, size 0x18
     unsigned long attributesNum; // offset 0x118, size 0x4
     unsigned long titleIdsNum; // offset 0x11C, size 0x4
-    struct ECContentCatalogInfo * contentSets; // offset 0x120, size 0x4
+    struct ECContentCatalogInfo *contentSets; // offset 0x120, size 0x4
     unsigned long contentSetsNum; // offset 0x124, size 0x4
-    struct ECContentInfo * contents; // offset 0x128, size 0x4
+    struct ECContentInfo *contents; // offset 0x128, size 0x4
     unsigned long size; // offset 0x12C, size 0x4
-    void * buf; // offset 0x130, size 0x4
+    void *buf; // offset 0x130, size 0x4
     unsigned long bufSize; // offset 0x134, size 0x4
     unsigned long total; // offset 0x138, size 0x4
     struct ECNameValuePair filters; // offset 0x13C, size 0x8
@@ -4794,8 +4808,8 @@ class PlatformMgr : public MsgSource {
     struct ECContentInfo mServerContents[512]; // offset 0x160, size 0x2000
     unsigned long mNumContents; // offset 0x2160, size 0x4
     unsigned char mFirstPoll; // offset 0x2164, size 0x1
-    class Object * mCommerceCallback; // offset 0x2168, size 0x4
-    class map * mContentList; // offset 0x216C, size 0x4
+    class Object *mCommerceCallback; // offset 0x2168, size 0x4
+    class map *mContentList; // offset 0x216C, size 0x4
     class DiscErrorMgrWii mDiscErrorMgr; // offset 0x2170, size 0xC
     unsigned char mNetworkPlay; // offset 0x217C, size 0x1
 };
@@ -4829,7 +4843,7 @@ struct JoypadRepeat {
 class JoypadClient : public Object {
     // total size: 0x448
     int mUser; // offset 0x28, size 0x4
-    class Object * mSink; // offset 0x2C, size 0x4
+    class Object *mSink; // offset 0x2C, size 0x4
     int mBtnMask; // offset 0x30, size 0x4
     float mHoldMs; // offset 0x34, size 0x4
     float mRepeatMs; // offset 0x38, size 0x4
@@ -4858,7 +4872,7 @@ class list : public _List_base {
 class UISink : public virtual Object {
     // total size: 0x34
 public:
-    void * __vptr$; // offset 0x4, size 0x4
+    void *__vptr$; // offset 0x4, size 0x4
 };
 class UIManager : public Object {
     // total size: 0xE8
@@ -4866,20 +4880,20 @@ class UIManager : public Object {
     unsigned char mWentBack; // offset 0x2C, size 0x1
     class list mPushedScreens; // offset 0x30, size 0x8
     int mMaxPushDepth; // offset 0x38, size 0x4
-    class JoypadClient * mJoyClient; // offset 0x3C, size 0x4
-    class UIScreen * mCurrentScreen; // offset 0x40, size 0x4
-    class UIScreen * mTransitionScreen; // offset 0x44, size 0x4
+    class JoypadClient *mJoyClient; // offset 0x3C, size 0x4
+    class UIScreen *mCurrentScreen; // offset 0x40, size 0x4
+    class UIScreen *mTransitionScreen; // offset 0x44, size 0x4
     class list mResources; // offset 0x48, size 0x8
-    class UISink * mSink; // offset 0x50, size 0x4
-    class RndCam * mCam; // offset 0x54, size 0x4
-    class RndEnviron * mEnv; // offset 0x58, size 0x4
+    class UISink *mSink; // offset 0x50, size 0x4
+    class RndCam *mCam; // offset 0x54, size 0x4
+    class RndEnviron *mEnv; // offset 0x58, size 0x4
     class Timer mTimer; // offset 0x60, size 0x38
     unsigned char mOverloadHorizontalNav; // offset 0x98, size 0x1
     unsigned char mCancelTransitionNotify; // offset 0x99, size 0x1
     class Timer mLoadTimer; // offset 0xA0, size 0x38
-    class RndOverlay * mOverlay; // offset 0xD8, size 0x4
+    class RndOverlay *mOverlay; // offset 0xD8, size 0x4
     unsigned char mRequireFixedText; // offset 0xDC, size 0x1
-    class Automator * mAutomator; // offset 0xE0, size 0x4
+    class Automator *mAutomator; // offset 0xE0, size 0x4
 };
 class InviteAcceptedMsg : public Message {
     // total size: 0x8
@@ -4892,25 +4906,25 @@ class DiskErrorMsg : public Message {
 };
 class BandUI : public UISink, public MsgSource {
     // total size: 0x84
-    class DataArray * mEventType; // offset 0x24, size 0x4
+    class DataArray *mEventType; // offset 0x24, size 0x4
     unsigned char mInviteAccepted; // offset 0x28, size 0x1
     unsigned char mHideEvent; // offset 0x29, size 0x1
     unsigned char mHandleRemotePlayerLeft; // offset 0x2A, size 0x1
     class Symbol mLastDisbandError; // offset 0x2C, size 0x4
     class String mContentName; // offset 0x30, size 0xC
-    class UIPanel * mFXPanel; // offset 0x3C, size 0x4
-    class UIPanel * mHelpbar; // offset 0x40, size 0x4
-    class UIPanel * mEventDialog; // offset 0x44, size 0x4
-    class UIPanel * mNetworkBusyPanel; // offset 0x48, size 0x4
-    class UIPanel * mContentLoadingPanel; // offset 0x4C, size 0x4
-    class UIPanel * mPassiveMessagesPanel; // offset 0x50, size 0x4
+    class UIPanel *mFXPanel; // offset 0x3C, size 0x4
+    class UIPanel *mHelpbar; // offset 0x40, size 0x4
+    class UIPanel *mEventDialog; // offset 0x44, size 0x4
+    class UIPanel *mNetworkBusyPanel; // offset 0x48, size 0x4
+    class UIPanel *mContentLoadingPanel; // offset 0x4C, size 0x4
+    class UIPanel *mPassiveMessagesPanel; // offset 0x50, size 0x4
     unsigned char mTransitionCompleteSwitch; // offset 0x54, size 0x1
     unsigned char mEventDialogShowing; // offset 0x55, size 0x1
 };
 class _List_node : public _List_node_base {
     // total size: 0xC
 public:
-    void (* _M_data)(); // offset 0x8, size 0x4
+    void (*_M_data)(); // offset 0x8, size 0x4
 };
 class StlNodeAlloc {
     // total size: 0x1
@@ -4938,20 +4952,21 @@ class Debug : public TextStream {
     unsigned char mNoTry; // offset 0x6, size 0x1
     unsigned char mNoModal; // offset 0x7, size 0x1
     int mTry; // offset 0x8, size 0x4
-    class TextFileStream * mLog; // offset 0xC, size 0x4
+    class TextFileStream *mLog; // offset 0xC, size 0x4
     unsigned char mAlwaysFlush; // offset 0x10, size 0x1
-    class TextStream * mReflect; // offset 0x14, size 0x4
-    void (* mModalCallback)(unsigned char &, char *, unsigned char); // offset 0x18, size 0x4
+    class TextStream *mReflect; // offset 0x14, size 0x4
+    void (*mModalCallback)(unsigned char &, char *, unsigned char); // offset 0x18, size
+                                                                    // 0x4
     class list mFailCallbacks; // offset 0x1C, size 0x8
     class list mExitCallbacks; // offset 0x24, size 0x8
     unsigned int mFailThreadStack[50]; // offset 0x2C, size 0xC8
-    const char * mFailThreadMsg; // offset 0xF4, size 0x4
-    const char * mNotifyThreadMsg; // offset 0xF8, size 0x4
+    const char *mFailThreadMsg; // offset 0xF4, size 0x4
+    const char *mNotifyThreadMsg; // offset 0xF8, size 0x4
 };
 class _List_node : public _List_node_base {
     // total size: 0xC
 public:
-    class Loader * _M_data; // offset 0x8, size 0x4
+    class Loader *_M_data; // offset 0x8, size 0x4
 };
 class StlNodeAlloc {
     // total size: 0x1
@@ -5019,7 +5034,7 @@ enum /* @enum$38437App_cpp */ {
 class TourSavable : public virtual Object {
     // total size: 0x40
 public:
-    void * __vptr$; // offset 0x4, size 0x4
+    void *__vptr$; // offset 0x4, size 0x4
 private:
     unsigned char mDirtySave; // offset 0x8, size 0x1
     unsigned char mDirtyUpload; // offset 0x9, size 0x1
@@ -5048,9 +5063,9 @@ protected:
         kUpdateBand = 5,
         kProfileUpload = 6,
     } mCallType; // offset 0x2C, size 0x4
-    class DataArray * mUploadOps; // offset 0x30, size 0x4
-    class DataArray * mEmptyArray; // offset 0x34, size 0x4
-    class Object * mCallbackObj; // offset 0x38, size 0x4
+    class DataArray *mUploadOps; // offset 0x30, size 0x4
+    class DataArray *mEmptyArray; // offset 0x34, size 0x4
+    class Object *mCallbackObj; // offset 0x38, size 0x4
 private:
     struct DateTime mSubmittedTime; // offset 0x3C, size 0x6
     int mOpIdGenerator; // offset 0x44, size 0x4
@@ -5073,7 +5088,7 @@ public:
 class Job {
     // total size: 0x8
 public:
-    void * __vptr$; // offset 0x0, size 0x4
+    void *__vptr$; // offset 0x0, size 0x4
 private:
     int mID; // offset 0x4, size 0x4
 };
@@ -5090,16 +5105,16 @@ class list : public _List_base {
 };
 class JobMgr {
     // total size: 0x10
-    class Object * mCallback; // offset 0x0, size 0x4
+    class Object *mCallback; // offset 0x0, size 0x4
     class list mJobQueue; // offset 0x4, size 0x8
     unsigned char mPreventStart; // offset 0xC, size 0x1
 };
 class Updatable {
     // total size: 0x8
 public:
-    void * __vptr$; // offset 0x0, size 0x4
+    void *__vptr$; // offset 0x0, size 0x4
 protected:
-    class ContextWrapper * mContextWrapper; // offset 0x4, size 0x4
+    class ContextWrapper *mContextWrapper; // offset 0x4, size 0x4
 };
 class StlNodeAlloc {
     // total size: 0x1
@@ -5129,7 +5144,7 @@ class list : public _List_base {
 class BotbBattlesParticipatedInList : public Updatable {
     // total size: 0x18
     class list mBotbBattlesParticipatedInRowList; // offset 0x8, size 0x8
-    class RBBotbBattlesParticipatedInQList * mQList; // offset 0x10, size 0x4
+    class RBBotbBattlesParticipatedInQList *mQList; // offset 0x10, size 0x4
     unsigned char mUpdated; // offset 0x14, size 0x1
 };
 class StlNodeAlloc {
@@ -5156,16 +5171,16 @@ class list : public _List_base {
 class BotbNewsList : public Updatable {
     // total size: 0x34
     class list mBotbNewsRowList; // offset 0x8, size 0x8
-    class RBBotbNewsQList * mQList; // offset 0x10, size 0x4
-    class DateTime * mQDateTime; // offset 0x14, size 0x4
+    class RBBotbNewsQList *mQList; // offset 0x10, size 0x4
+    class DateTime *mQDateTime; // offset 0x14, size 0x4
     struct DateTime mDateTime; // offset 0x18, size 0x6
-    class String * mQCookies; // offset 0x20, size 0x4
+    class String *mQCookies; // offset 0x20, size 0x4
     class String mCookies; // offset 0x24, size 0xC
     unsigned char mUpdated; // offset 0x30, size 0x1
 };
 class BotbRecordBattleResponse {
     // total size: 0x4
-    class RBBotbRecordBattleResponse * mRecordBattleResponse; // offset 0x0, size 0x4
+    class RBBotbRecordBattleResponse *mRecordBattleResponse; // offset 0x0, size 0x4
 };
 class StlNodeAlloc {
     // total size: 0x1
@@ -5195,17 +5210,17 @@ class list : public _List_base {
 class BotbBattleResultsList : public Updatable {
     // total size: 0x18
     class list mBotbBattleResultsRowList; // offset 0x8, size 0x8
-    class RBBotbBattleResultsQList * mQList; // offset 0x10, size 0x4
+    class RBBotbBattleResultsQList *mQList; // offset 0x10, size 0x4
     unsigned char mUpdated; // offset 0x14, size 0x1
 };
 class BotbPlayBattleResponse {
     // total size: 0x14
-    class RBBotbPlayBattleResponse * mPlayBattleResponse; // offset 0x0, size 0x4
+    class RBBotbPlayBattleResponse *mPlayBattleResponse; // offset 0x0, size 0x4
     class OnlineID mOnlineID; // offset 0x4, size 0x10
 };
 class BotbBattleResultsByBandInfo {
     // total size: 0x4
-    class RBBotbBattleResultsByBandInfo * mBattleResultsByBandInfo; // offset 0x0, size 0x4
+    class RBBotbBattleResultsByBandInfo *mBattleResultsByBandInfo; // offset 0x0, size 0x4
 };
 class StlNodeAlloc {
     // total size: 0x1
@@ -5236,7 +5251,7 @@ class list : public _List_base {
 class BotbOpenBattlesList : public Updatable {
     // total size: 0x18
     class list mBotbOpenBattlesRowList; // offset 0x8, size 0x8
-    class RBBotbOpenBattlesQList * mQList; // offset 0x10, size 0x4
+    class RBBotbOpenBattlesQList *mQList; // offset 0x10, size 0x4
     unsigned char mUpdated; // offset 0x14, size 0x1
 };
 class StlNodeAlloc {
@@ -5271,7 +5286,7 @@ enum WinMetric {
 };
 class BotbBattleDetails {
     // total size: 0xC
-    class RBBotbBattleDetails * mBattleDetails; // offset 0x0, size 0x4
+    class RBBotbBattleDetails *mBattleDetails; // offset 0x0, size 0x4
     class list mSetList; // offset 0x4, size 0x8
 };
 class StlNodeAlloc {
@@ -5299,7 +5314,7 @@ class list : public _List_base {
 class PresenceResultList : public Updatable {
     // total size: 0x18
     class list mPresenceResultRowList; // offset 0x8, size 0x8
-    class RBPresenceResultQList * mQList; // offset 0x10, size 0x4
+    class RBPresenceResultQList *mQList; // offset 0x10, size 0x4
     unsigned char mUpdated; // offset 0x14, size 0x1
 };
 class StlNodeAlloc {
@@ -5324,7 +5339,7 @@ class EntityID {
 class LeaderboardResultRow {
     // total size: 0x1C
 public:
-    void * __vptr$; // offset 0x0, size 0x4
+    void *__vptr$; // offset 0x0, size 0x4
     class EntityID mLeaderboardID; // offset 0x4, size 0x18
 };
 class _List_base {
@@ -5338,18 +5353,18 @@ class list : public _List_base {
 class LeaderboardResultList {
     // total size: 0xC
 public:
-    void * __vptr$; // offset 0x0, size 0x4
+    void *__vptr$; // offset 0x0, size 0x4
 protected:
     class list mResultRowList; // offset 0x4, size 0x8
 };
 class BandResultList : public Updatable, public LeaderboardResultList {
     // total size: 0x1C
-    class RBBandResultQList * mQList; // offset 0x14, size 0x4
+    class RBBandResultQList *mQList; // offset 0x14, size 0x4
     unsigned char mUpdated; // offset 0x18, size 0x1
 };
 class PlayerResultList : public Updatable, public LeaderboardResultList {
     // total size: 0x1C
-    class RBPlayerResultQList * mQList; // offset 0x14, size 0x4
+    class RBPlayerResultQList *mQList; // offset 0x14, size 0x4
     unsigned char mUpdated; // offset 0x18, size 0x1
 };
 class ProfileChangedMsg : public Message {
@@ -5357,15 +5372,15 @@ class ProfileChangedMsg : public Message {
 };
 class RockCentralGateway : public MsgSource {
     // total size: 0xC8
-    class ContextWrapperPool * mContextWrapperPool; // offset 0x1C, size 0x4
-    class ProtocolCallContext * mConfigContext; // offset 0x20, size 0x4
-    class String * mReceivedConfig; // offset 0x24, size 0x4
-    class String * mReceivedVersion; // offset 0x28, size 0x4
-    class RBEntitiesClient * mRBEntities; // offset 0x2C, size 0x4
-    class RBScoresClient * mRBScores; // offset 0x30, size 0x4
-    class RBLeaderboardsClient * mRBLeaderboards; // offset 0x34, size 0x4
-    class RBConfigClient * mRBConfig; // offset 0x38, size 0x4
-    class RBBotbClient * mRBBotb; // offset 0x3C, size 0x4
+    class ContextWrapperPool *mContextWrapperPool; // offset 0x1C, size 0x4
+    class ProtocolCallContext *mConfigContext; // offset 0x20, size 0x4
+    class String *mReceivedConfig; // offset 0x24, size 0x4
+    class String *mReceivedVersion; // offset 0x28, size 0x4
+    class RBEntitiesClient *mRBEntities; // offset 0x2C, size 0x4
+    class RBScoresClient *mRBScores; // offset 0x30, size 0x4
+    class RBLeaderboardsClient *mRBLeaderboards; // offset 0x34, size 0x4
+    class RBConfigClient *mRBConfig; // offset 0x38, size 0x4
+    class RBBotbClient *mRBBotb; // offset 0x3C, size 0x4
     enum /* @enum$12402App_cpp */ {
         kOffline = 0,
         kConnecting = 1,
@@ -5375,25 +5390,25 @@ class RockCentralGateway : public MsgSource {
     } mState; // offset 0x40, size 0x4
     class Timer mTime; // offset 0x48, size 0x38
     float mRetryTime; // offset 0x80, size 0x4
-    class BandProfileCache * mProfileCache; // offset 0x84, size 0x4
+    class BandProfileCache *mProfileCache; // offset 0x84, size 0x4
     class JobMgr mJobMgr; // offset 0x88, size 0x10
     unsigned char mLoginBlocked; // offset 0x98, size 0x1
 };
 class NetGameData {
     // total size: 0x4
 public:
-    void * __vptr$; // offset 0x0, size 0x4
+    void *__vptr$; // offset 0x0, size 0x4
 };
 class Net : public Object {
     // total size: 0x368
-    class NetGameData * mGameData; // offset 0x28, size 0x4
-    class NetSession * mSession; // offset 0x2C, size 0x4
-    class SessionSearcher * mSearcher; // offset 0x30, size 0x4
-    class Server * mServer; // offset 0x34, size 0x4
-    class NetworkEmulator * mEmulator; // offset 0x38, size 0x4
-    class GSMCodec * mCodec; // offset 0x3C, size 0x4
-    class SyncStore * mSyncStore; // offset 0x40, size 0x4
-    unsigned char * mThreadStack; // offset 0x44, size 0x4
+    class NetGameData *mGameData; // offset 0x28, size 0x4
+    class NetSession *mSession; // offset 0x2C, size 0x4
+    class SessionSearcher *mSearcher; // offset 0x30, size 0x4
+    class Server *mServer; // offset 0x34, size 0x4
+    class NetworkEmulator *mEmulator; // offset 0x38, size 0x4
+    class GSMCodec *mCodec; // offset 0x3C, size 0x4
+    class SyncStore *mSyncStore; // offset 0x40, size 0x4
+    unsigned char *mThreadStack; // offset 0x44, size 0x4
     int mThreadResult; // offset 0x48, size 0x4
     unsigned char mThreadActive; // offset 0x4C, size 0x1
     struct OSThread mThread; // offset 0x50, size 0x318
@@ -5404,7 +5419,7 @@ class FilePath : public String {
 class WiiDrawTarget {
     // total size: 0x4
 public:
-    void * __vptr$; // offset 0x0, size 0x4
+    void *__vptr$; // offset 0x0, size 0x4
 };
 enum VITVMode {
     VI_TVMODE_NTSC_INT = 0,
@@ -5475,18 +5490,18 @@ struct OSFontHeader {
 class WiiRnd : public Rnd, public WiiDrawTarget {
     // total size: 0x280
     struct _GXRenderModeObj mMode; // offset 0x138, size 0x3C
-    void * mFrameBuffer; // offset 0x174, size 0x4
+    void *mFrameBuffer; // offset 0x174, size 0x4
     unsigned char mFirstFrame; // offset 0x178, size 0x1
-    void * mFifo; // offset 0x17C, size 0x4
-    struct GXFifoObj * mFifoObj; // offset 0x180, size 0x4
+    void *mFifo; // offset 0x17C, size 0x4
+    struct GXFifoObj *mFifoObj; // offset 0x180, size 0x4
     float mScreenOrthoProjXfm[4][4]; // offset 0x184, size 0x40
     float mWorldOrthoProjXfm[4][4]; // offset 0x1C4, size 0x40
     float mIdentityXfm[3][4]; // offset 0x204, size 0x30
-    struct OSFontHeader * mFont; // offset 0x234, size 0x4
+    struct OSFontHeader *mFont; // offset 0x234, size 0x4
     unsigned char mNewLighting; // offset 0x238, size 0x1
     unsigned char mPostProcEnabled; // offset 0x239, size 0x1
-    class WiiSplitPostProc * mSplitPostProc; // offset 0x23C, size 0x4
-    void * mScreenshotWorkingBuffer; // offset 0x240, size 0x4
+    class WiiSplitPostProc *mSplitPostProc; // offset 0x23C, size 0x4
+    void *mScreenshotWorkingBuffer; // offset 0x240, size 0x4
     float mTmpProjection[7]; // offset 0x244, size 0x1C
     float mTmpViewport[6]; // offset 0x260, size 0x18
     unsigned char mProgressiveScan; // offset 0x278, size 0x1
@@ -5497,4 +5512,3 @@ class WiiRnd : public Rnd, public WiiDrawTarget {
     unsigned char mScreenshotsActive; // offset 0x27D, size 0x1
     unsigned char mDrawingWorld; // offset 0x27E, size 0x1
 };
-
