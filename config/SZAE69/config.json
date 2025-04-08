@@ -1,0 +1,259 @@
+{
+    "progress_categories": {
+        "game": "Game Code",
+        "network": "Networking Code",
+        "engine": "Milo Engine Code",
+        "lib": "Third-Party Libraries",
+        "sdk": "SDK Code"
+    },
+    "asflags": [
+        "-mgekko",
+        "--strip-local-absolute"
+    ],
+    "ldflags": [
+        "-fp hardware",
+        "-nodefaults",
+        "-listclosure"
+    ],
+    "cflags": {
+        "base": {
+            "flags": [
+                "-nodefaults",
+                "-nosyspath",
+                "-gccinc",
+                "-maxerrors 1",
+                "-nowraplines",
+                "-proc gekko",
+                "-align powerpc",
+                "-enum int",
+                "-fp hardware",
+                "-pragma \"cats off\"",
+                "-pragma \"warning off (10184)\"",
+                "-pragma \"warn_notinlined off\"",
+                "-pragma \"warn_filenamecaps on\"",
+                "-pragma \"warn_filenamecaps_system on\"",
+                "-RTTI on",
+                "-Cpp_exceptions off",
+                "-d MILO_DEBUG",
+                "-d HX_WII"
+            ]
+        },
+        "main": {
+            "base": "base",
+            "flags": [
+                "-sdata 2",
+                "-sdata2 2",
+                "-str reuse,pool",
+                "-func_align 4",
+                "-fp_contract on",
+                "-pragma \"merge_float_consts on\"",
+                "-O4,p",
+                "-inline noauto",
+                "-ipa file"
+            ]
+        },
+        "band2": {
+            "base": "base",
+            "flags": [
+                "-sdata 2",
+                "-sdata2 2",
+                "-str reuse,pool",
+                "-fp_contract on",
+                "-pragma \"merge_float_consts on\"",
+                "-O4,p",
+                "-inline noauto",
+                "-ipa file"
+            ]
+        },
+        "network": {
+            "base": "band2",
+            "flags": []
+        },
+        "network/json_c": {
+            "base": "base",
+            "flags": [
+                "-sdata 2",
+                "-sdata2 2",
+                "-str reuse,pool",
+                "-fp_contract on",
+                "-pragma \"merge_float_consts on\"",
+                "-lang=c99",
+                "-O4,p",
+                "-inline auto",
+                "-ipa file"
+            ]
+        },
+        "network/Platform": {
+            "base": "base",
+            "flags": [
+                "-sdata 2",
+                "-sdata2 2",
+                "-pool on",
+                "-str reuse,pool",
+                "-fp_contract on",
+                "-pragma \"merge_float_consts on\"",
+                "-O4,p",
+                "-inline auto"
+            ]
+        },
+        "system": {
+            "base": "band2",
+            "flags": []
+        },
+        "system/flex": {
+            "base": "system/zlib",
+            "flags": [
+                "-ipa file"
+            ]
+        },
+        "system/speex": {
+            "base": "system/zlib",
+            "flags": [
+                "-fp_contract on"
+            ]
+        },
+        "system/soundtouch": {
+            "base": "base",
+            "flags": [
+                "-sdata 2",
+                "-sdata2 2",
+                "-str reuse,pool",
+                "-pragma \"merge_float_consts on\"",
+                "-fp_contract on",
+                "-O4,p",
+                "-lang=c++",
+                "-inline auto"
+            ]
+        },
+        "system/tomcrypt": {
+            "base": "system/zlib",
+            "flags": [
+                "-inline off"
+            ]
+        },
+        "system/vorbis": {
+            "base": "system/zlib",
+            "flags": [
+                "-fp_contract on"
+            ]
+        },
+        "system/zlib": {
+            "base": "base",
+            "flags": [
+                "-sdata 2",
+                "-sdata2 2",
+                "-pool on",
+                "-str reuse,pool",
+                "-pragma \"merge_float_consts on\"",
+                "-lang=c99",
+                "-O4,p",
+                "-inline auto"
+            ]
+        },
+        "bink": {
+            "base": "base",
+            "flags": [
+                "-pool on",
+                "-str reuse,pool",
+                "-pragma \"merge_float_consts on\"",
+                "-lang=c99",
+                "-O4,s",
+                "-inline auto"
+            ]
+        },
+        "sdk/MSL": {
+            "base": "base",
+            "flags": [
+                "-str reuse,pool,readonly",
+                "-use_lmw_stmw on",
+                "-common off",
+                "-lang=c99",
+                "-O4,p",
+                "-inline auto",
+                "-func_align 4",
+                "-d _STLP_WHOLE_NATIVE_STD",
+                "-d _STLP_DONT_REDEFINE_STD"
+            ]
+        },
+        "sdk/MSL_C": {
+            "base": "sdk/MSL",
+            "flags": []
+        },
+        "sdk/MSL_C/fdlibm": {
+            "base": "sdk/MSL",
+            "flags": [
+                "-d _IEEE_LIBM"
+            ]
+        },
+        "sdk/MSL_C++": {
+            "base": "sdk/MSL",
+            "flags": [
+                "-Cpp_exceptions on"
+            ]
+        },
+        "sdk/Runtime": {
+            "base": "sdk/MSL",
+            "flags": []
+        },
+        "sdk/RVL_SDK": {
+            "base": "base",
+            "flags": [
+                "-func_align 16",
+                "-O4,p",
+                "-lang=c99",
+                "-d NDEBUG"
+            ]
+        },
+        "sdk/RVL_SDK/bte": {
+            "base": "base",
+            "flags": [
+                "-sdata 2",
+                "-sdata2 2",
+                "-str reuse,pool",
+                "-pragma \"merge_float_consts on\"",
+                "-lang=c99",
+                "-O4,p",
+                "-inline auto"
+            ]
+        },
+        "sdk/RevoEX": {
+            "base": "base",
+            "flags": [
+                "-O4,p",
+                "-func_align 4"
+            ]
+        },
+        "sdk/DWC": {
+            "base": "base",
+            "flags": [
+                "-func_align 4",
+                "-O4,p",
+                "-Isrc/sdk/DWC"
+            ]
+        },
+        "sdk/ec": {
+            "base": "base",
+            "flags": [
+                "-sdata 0",
+                "-sdata2 0",
+                "-func_align 4",
+                "-Cpp_exceptions on",
+                "-O4,s",
+                "-inline noauto",
+                "-ipa file",
+                "-d _STLP_WHOLE_NATIVE_STD",
+                "-d _STLP_DONT_REDEFINE_STD"
+            ]
+        },
+        "sdk/ec_c": {
+            "base": "base",
+            "flags": [
+                "-lang=c99",
+                "-O4,s",
+                "-inline noauto",
+                "-d _STLP_WHOLE_NATIVE_STD",
+                "-d _STLP_DONT_REDEFINE_STD"
+            ]
+        }
+    }
+}

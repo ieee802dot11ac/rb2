@@ -1,0 +1,11 @@
+# See config.example.yml for documentation.
+object_base: orig/SZAE69
+object: sys/main.dol
+hash: f617864b552a1d0c086c9429d0e966ae3c442bb1
+symbols: config/SZAE69/symbols.txt
+splits: config/SZAE69/splits.txt
+selfile: files/band_r_wii.sel
+selfile_hash: 3a86f1b717fac5bfafc93089e1547066f2be1ab6
+# Change this to match the linker verison.
+# See config.example.yml for a list.
+mw_comment_version: 14
