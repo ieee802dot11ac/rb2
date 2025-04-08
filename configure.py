@@ -19,11 +19,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Union
 from tools.project import *
 
-from tools.defines_common import (
-    cflags_includes,
-    DEFAULT_VERSION,
-    VERSIONS
-)
+from tools.defines_common import cflags_includes, DEFAULT_VERSION, VERSIONS
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
@@ -137,7 +133,7 @@ if not config.non_matching:
 # Tool versions
 config.binutils_tag = "2.42-1"
 config.compilers_tag = "20240706"
-config.dtk_tag = "v1.3.0"
+config.dtk_tag = "v1.4.1"
 config.objdiff_tag = "v2.7.1"
 config.sjiswrap_tag = "v1.2.0"
 config.wibo_tag = "0.6.16"
@@ -166,18 +162,26 @@ asflags: list[str] = flags["asflags"]
 ldflags: list[str] = flags["ldflags"]
 cflags: dict[str, dict] = flags["cflags"]
 
+
 def get_cflags(name: str) -> list[str]:
     return cflags[name]["flags"]
+
+
 def add_cflags(name: str, flags: list[str]):
     cflags[name]["flags"] = [*flags, *cflags[name]["flags"]]
+
 
 def get_cflags_base(name: str) -> str:
     return cflags[name].get("base", None)
 
+
 def are_cflags_inherited(name: str) -> bool:
     return "inherited" in cflags[name]
+
+
 def set_cflags_inherited(name: str):
     cflags[name]["inherited"] = True
+
 
 def apply_base_cflags(key: str):
     if are_cflags_inherited(key):
@@ -191,6 +195,7 @@ def apply_base_cflags(key: str):
         add_cflags(key, get_cflags(base))
 
     set_cflags_inherited(key)
+
 
 # Set up base flags
 base_cflags = get_cflags("base")
@@ -236,6 +241,7 @@ NonMatching = False
 config.warn_missing_config = True
 config.warn_missing_source = False
 
+
 def get_object_completed(status: str) -> bool:
     if status == "MISSING":
         return NonMatching
@@ -250,20 +256,25 @@ def get_object_completed(status: str) -> bool:
 
     assert False, f"Invalid object status {status}"
 
+
 libs: list[dict] = []
 objects: dict[str, dict] = json.load(open(objects_path, "r", encoding="utf-8"))
-for (lib, lib_config) in objects.items():
+for lib, lib_config in objects.items():
     # config_cflags: str | list[str]
     config_cflags: list[str] = lib_config.pop("cflags")
-    lib_cflags = get_cflags(config_cflags) if isinstance(config_cflags, str) else config_cflags
+    lib_cflags = (
+        get_cflags(config_cflags) if isinstance(config_cflags, str) else config_cflags
+    )
 
     lib_objects: list[Object] = []
     # config_objects: dict[str, str | dict]
-    config_objects: dict[str, Union[str, dict[str, Union[str, Any]]]] = lib_config.pop("objects")
+    config_objects: dict[str, Union[str, dict[str, Union[str, Any]]]] = lib_config.pop(
+        "objects"
+    )
     if len(config_objects) < 1:
         continue
 
-    for (path, obj_config) in config_objects.items():
+    for path, obj_config in config_objects.items():
         if isinstance(obj_config, str):
             completed = get_object_completed(obj_config)
             lib_objects.append(Object(completed, path))
@@ -277,13 +288,15 @@ for (lib, lib_config) in objects.items():
 
             lib_objects.append(Object(completed, path, **obj_config))
 
-    libs.append({
-        "lib": lib,
-        "cflags": lib_cflags,
-        "host": False,
-        "objects": lib_objects,
-        **lib_config
-    })
+    libs.append(
+        {
+            "lib": lib,
+            "cflags": lib_cflags,
+            "host": False,
+            "objects": lib_objects,
+            **lib_config,
+        }
+    )
 
 config.libs = libs
 
@@ -296,7 +309,9 @@ config.libs = libs
 # config.link_order_callback = link_order_callback
 
 # Progress tracking categories
-config.progress_categories = [ProgressCategory(name, desc) for (name, desc) in progress_categories.items()]
+config.progress_categories = [
+    ProgressCategory(name, desc) for (name, desc) in progress_categories.items()
+]
 config.progress_each_module = args.verbose
 
 if args.mode == "configure":

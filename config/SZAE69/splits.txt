@@ -5758,34 +5758,34 @@ system/rndwii/screenshot.o:
 	.sdata      start:0x80A475D8 end:0x80A475F0
 	.sbss       start:0x80A540C8 end:0x80A540D8
 
-system/synthwii\soundtouch/AAFilter.o:
+system/synthwii/soundtouch/AAFilter.o:
 	.text       start:0x8055EA74 end:0x8055ED38
 	.rodata     start:0x808497D8 end:0x80849830
 	.data       start:0x80919898 end:0x809198A8
 
-system/synthwii\soundtouch/FIFOSampleBuffer.o:
+system/synthwii/soundtouch/FIFOSampleBuffer.o:
 	.text       start:0x8055ED38 end:0x8055F1EC
 	.data       start:0x809198A8 end:0x80919958
 	.sbss       start:0x80A540D8 end:0x80A540E0
 
-system/synthwii\soundtouch/FIRFilter.o:
+system/synthwii/soundtouch/FIRFilter.o:
 	.text       start:0x8055F1EC end:0x8055F654
 	.rodata     start:0x80849830 end:0x80849840
 	.data       start:0x80919958 end:0x809199B8
 
-system/synthwii\soundtouch/RateTransposer.o:
+system/synthwii/soundtouch/RateTransposer.o:
 	.text       start:0x8055F654 end:0x80560164
 	.text       start:0x80560164 end:0x805601C8
 	.rodata     start:0x80849840 end:0x80849850
 	.data       start:0x809199B8 end:0x80919AE8
 	.sdata2     start:0x80A57A10 end:0x80A57A20
 
-system/synthwii\soundtouch/SoundTouch.o:
+system/synthwii/soundtouch/SoundTouch.o:
 	.text       start:0x805601C8 end:0x80560B44
 	.data       start:0x80919AE8 end:0x80919BD0
 	.sdata2     start:0x80A57A20 end:0x80A57A28
 
-system/synthwii\soundtouch/TDStretch.o:
+system/synthwii/soundtouch/TDStretch.o:
 	.text       start:0x80560B44 end:0x80561A70
 	.rodata     start:0x80849850 end:0x80849878
 	.data       start:0x80919BD0 end:0x80919DD0
@@ -7791,10 +7791,11 @@ sdk/PowerPC_EABI_Support/Runtime/runtime.o:
 	.text       start:0x806573C0 end:0x80657CA8
 	.rodata     start:0x80854158 end:0x80854170
 
-sdk/PowerPC_EABI_Support/Runtime/__init_cpp_exceptions.o:
+sdk/PowerPC_EABI_Support/Runtime/__init_cpp_exceptions.cpp:
 	.text       start:0x80657CA8 end:0x80657D18
-	.ctors      start:0x80847980 end:0x80847984
-	.dtors      start:0x80847C20 end:0x80847C28
+	.ctors      start:0x80847980 end:0x80847984 rename:.ctors$10
+	.dtors      start:0x80847C20 end:0x80847C24 rename:.dtors$10
+	.dtors      start:0x80847C24 end:0x80847C28 rename:.dtors$15
 	.sdata      start:0x80A47D50 end:0x80A47D58
 
 sdk/PowerPC_EABI_Support/Runtime/Gecko_setjmp.o:
@@ -9114,7 +9115,7 @@ sdk/RVL_SDK/src/wpad/WUDHidHost.c:
 	.text       start:0x80705C4C end:0x80706248
 	.data       start:0x80957FA8 end:0x80958228
 
-sdk/RVL_SDK/src/wpad/debug_msg.c:
+sdk/RVL_SDK/src/wpad/debug_msg2.c:
 	.text       start:0x80706248 end:0x80706298
 
 sdk/RVL_SDK/src/hio2/hio2.o:
