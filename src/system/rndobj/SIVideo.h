@@ -1,6 +1,6 @@
 #ifndef RNDOBJ_SIVIDEO_H
 #define RNDOBJ_SIVIDEO_H
-// #include "utl/BinStream.h"
+#include "utl/BinStream.h"
 #include "types.h"
 
 class SIVideo {
