@@ -131,5 +131,14 @@
 			"system/zlib/trees.c": "MISSING",
 			"system/zlib/zutil.c": "MISSING"
 		}
+	},
+	"network": {
+		"progress_category": "network",
+		"mw_version": "Wii/1.0",
+		"cflags": "network",
+		"objects": {
+			"network/Platform/RootObject.cpp": "Matching",
+			"network/Platform/StringConversion.cpp": "NonMatching"
+		}
 	}
 }

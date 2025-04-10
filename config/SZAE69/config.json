@@ -60,14 +60,17 @@
 				"-str reuse,pool",
 				"-fp_contract on",
 				"-pragma \"merge_float_consts on\"",
-				"-O4,p",
+				"-O2",
 				"-inline noauto",
 				"-ipa file"
 			]
 		},
 		"network": {
 			"base": "band2",
-			"flags": []
+			"flags": [
+				"-O0",
+				"-func_align 4"
+			]
 		},
 		"network/json_c": {
 			"base": "base",

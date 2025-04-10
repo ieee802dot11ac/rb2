@@ -6,8 +6,8 @@
 #include "utl/Str.h"
 #include "utl/Symbol.h"
 #include <utility>
-#include <vector>
-#include <map>
+// #include <vector>
+// #include <map>
 
 #define BS_WRITE_OP(var)                                                                 \
     BinStream &operator<<(var x) {                                                       \
@@ -229,6 +229,7 @@ public:
     BS_READ_FUNC(float, Float);
 };
 
+/*
 // Note: `Allocator` here is actually the size/capacity type parameter on Wii.
 // The name is based on Xbox 360 symbols, which show the allocator type instead.
 template <class T, class Allocator>
@@ -311,3 +312,4 @@ template <class T>
 BinStream &operator>>(BinStream &bs, T *t) {
     t->Load(bs);
 }
+*/

@@ -1,46 +1,94 @@
-/*
-    Compile unit: C:\rockband2\system\src\utl\StlAlloc.h
-    Producer: MW EABI PPC C-Compiler
-    Language: C++
-    Code range: 0x8062C034 -> 0x8062CB60
-*/
-// Range: 0x8062C034 -> 0x8062CB34
-unsigned char MakeBSPTree(class BSPNode * & n /* r23 */, class list & faces /* r24 */, int depth /* r25 */) {
-    // Local variables
-    int numFaces; // r0
-    float lowestSum; // f31
-    struct _List_iterator t; // r1+0x10C
-    int i; // r29
-    struct _List_iterator p; // r1+0x108
-    float frontArea; // f30
-    float backArea; // f29
-    int frontFaces; // r28
-    int backFaces; // r27
-    int numSplit; // r26
-    struct _List_iterator ti; // r1+0x104
-    unsigned char front; // r1+0x3F
-    unsigned char back; // r1+0x3E
-    float sum; // f1
-    class list frontFaces; // r1+0x158
-    class list backFaces; // r1+0x150
-    unsigned char front; // r1+0x3D
-    unsigned char back; // r1+0x3C
-    class Ray r; // r1+0x160
-    class BSPFace tf; // r1+0x170
+#ifndef STL_STLALLOC_H
+#define STL_STLALLOC_H
 
-    // References
-    // -> struct [anonymous] __RTTI__PQ211stlpmtx_std18_List_node<5Plane>;
-    // -> struct [anonymous] __RTTI__P7Vector2;
-    // -> const char * gStlAllocName;
-    // -> struct [anonymous] __RTTI__PQ211stlpmtx_std20_List_node<7BSPFace>;
-    // -> unsigned char gStlAllocNameLookup;
-    // -> static int gBSPMaxCandidates;
-    // -> static float gBSPDirTol;
-    // -> class Debug TheDebug;
-    // -> static int gBSPMaxDepth;
+// File name known from bank 5/6
+
+#include <cstddef>
+#include <system/utl/MemMgr.h>
+
+#ifdef STL_NODE_ALLOC_DEBUG
+#include <typeinfo>
+#endif
+
+#ifdef STLPORT
+// StlNodeAlloc exists in the STLport namespace
+namespace STLPORT {
+#endif
+
+    template <class T>
+    class StlNodeAlloc {
+    public:
+        typedef std::size_t size_type;
+        typedef std::ptrdiff_t difference_type;
+
+        typedef T value_type;
+        typedef T *pointer;
+        typedef T &reference;
+        typedef const T *const_pointer;
+        typedef const T &const_reference;
+
+        template <class T2>
+        struct rebind {
+            typedef StlNodeAlloc<T2> other;
+        };
+
+#ifdef VERSION_SZBE69_B8
+        // Retail doesn't have constructor calls
+        StlNodeAlloc() {}
+        StlNodeAlloc(StlNodeAlloc<T> const &) {}
+        template <class T2>
+        StlNodeAlloc(const StlNodeAlloc<T2> &) {}
+#endif
+
+        // ...but still has the destructor
+        ~StlNodeAlloc() {}
+
+#ifdef VERSION_SZBE69
+        // This is the only way to make allocator conversions
+        // work in retail without using constructors
+        template <class T2>
+        operator StlNodeAlloc<T2>() const {
+            return StlNodeAlloc<T2>();
+        }
+#endif
+
+        template <class T2>
+        StlNodeAlloc<T> &operator=(const StlNodeAlloc<T2> &right) {}
+
+        template <class T2>
+        bool operator==(const StlNodeAlloc<T2> &) const {
+            return true;
+        }
+        template <class T2>
+        bool operator!=(const StlNodeAlloc<T2> &) const {
+            return false;
+        }
+
+        pointer address(reference value) const { return &value; }
+        const_pointer address(const_reference value) const { return &value; }
+        size_type max_size() const { return size_type(-1) / sizeof(T); }
+
+        pointer allocate(const size_type count, const void *hint = nullptr) const {
+#ifdef STL_NODE_ALLOC_DEBUG
+            // A leftover from the earlier prototype versions of RB3;
+            // bank 5/6 use type info for allocation tracing purposes
+            typeid(pointer);
+#endif
+            return reinterpret_cast<pointer>(
+                _MemOrPoolAllocSTL(count * sizeof(T), FastPool)
+            );
+        }
+
+        void deallocate(pointer ptr, size_type count) const {
+            _MemOrPoolFreeSTL(count * sizeof(T), FastPool, ptr);
+        }
+
+        void construct(pointer ptr, const_reference value) const { new (ptr) T(value); }
+        void destroy(pointer ptr) const { ptr->~T(); }
+    };
+
+#ifdef STLPORT
 }
+#endif
 
-// Range: 0x8062CB34 -> 0x8062CB60
-void _Vector_base::_M_throw_length_error() {}
-
-
+#endif

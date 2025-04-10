@@ -1,3 +1,4 @@
+#pragma once
 /*
     Compile unit: C:\rockband2\system\src\utl\Symbol.h
     Producer: MW EABI PPC C-Compiler
